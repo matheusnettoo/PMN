@@ -1,0 +1,1163 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f0e7">
+  <title>Matheus Netto — Portfólio Educacional</title>
+  <meta name="description" content="Portfólio visual de campanhas educacionais, carrosséis e peças de comunicação.">
+  <style>
+    :root {
+      --paper:#f4f0e7; --paper2:#ebe8df; --ink:#191e1b; --muted:#737970;
+      --line:#c9cec7; --deep:#1c2928; --cream:#faf9f5; --red:#ef5944;
+      --blue:#264fda; --lime:#d6e636; --green:#2d704f;
+    }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      margin:0; background:var(--paper); color:var(--ink);
+      font-family:Arial, Helvetica, sans-serif; -webkit-font-smoothing:antialiased;
+    }
+    img, video { display:block; width:100%; height:auto; }
+    button, a { font:inherit; }
+    .topbar {
+      position:sticky; top:0; z-index:20; display:flex; align-items:center;
+      justify-content:space-between; gap:24px; padding:14px 4.8vw;
+      background:rgba(244,240,231,.92); border-bottom:1px solid var(--line);
+      backdrop-filter:blur(12px);
+    }
+    .brand { color:var(--ink); text-decoration:none; font-size:11px; font-weight:800; letter-spacing:.14em; white-space:nowrap; }
+    .nav { display:flex; gap:clamp(12px,2vw,32px); overflow:auto; scrollbar-width:none; }
+    .nav a { color:var(--muted); text-decoration:none; text-transform:uppercase; font-size:9px; letter-spacing:.1em; white-space:nowrap; }
+    .nav a:hover { color:var(--ink); }
+    .hero {
+      min-height:760px; padding:40px 4.8vw 34px; display:flex; flex-direction:column;
+      justify-content:space-between; overflow:hidden; background:var(--paper);
+    }
+    .hero-main { display:grid; grid-template-columns:1fr 1fr; gap:5vw; align-items:center; min-height:680px; }
+    .hero h1 {
+      margin:0; max-width:580px; font-size:clamp(40px,5.7vw,88px);
+      line-height:.92; letter-spacing:-.075em; font-weight:800;
+    }
+    .hero h1 em { color:var(--red); font-style:normal; }
+    .hero-art {
+      --hero-window:650px; width:100%; height:var(--hero-window); overflow:hidden; display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr)); gap:9px;
+    }
+    .hero-art-column { height:100%; overflow:hidden; }
+    .hero-art-track { display:flex; flex-direction:column; animation:heroScroll 34s linear infinite; }
+    .hero-art-column:nth-child(2) .hero-art-track { animation-duration:41s; animation-direction:reverse; }
+    .hero-art-column:nth-child(3) .hero-art-track { animation-duration:31s; }
+    .hero-art-column:nth-child(4) .hero-art-track { animation-duration:37s; animation-direction:reverse; }
+    .hero-art-set { display:flex; flex-direction:column; gap:8px; padding:4px 0; }
+    .hero-art figure { margin:0; width:100%; }
+    .hero-art img { display:block; width:100%; height:auto; }
+    @keyframes heroScroll { to { transform:translateY(-50%); } }
+    .hero-meta { display:flex; justify-content:space-between; margin-top:28px; font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); }
+    .hero-byline { display:block; margin-top:22px; color:var(--muted); font-size:12px; letter-spacing:.14em; text-transform:uppercase; }
+    .section { padding:clamp(74px,9vw,145px) 4.8vw; }
+    .section-title {
+      display:flex; align-items:flex-end; justify-content:space-between; gap:24px;
+      padding-bottom:20px; border-bottom:1px solid var(--line); margin-bottom:38px;
+    }
+    .section-title h2 {
+      margin:0; font-size:clamp(38px,6vw,86px); line-height:.9;
+      letter-spacing:-.075em; font-weight:800;
+    }
+    .section-title .section-index { font-size:10px; letter-spacing:.13em; text-transform:uppercase; color:var(--muted); white-space:nowrap; }
+    .approval { background:var(--paper); color:var(--ink); }
+    .case-titleline {
+      display:flex; align-items:baseline; justify-content:space-between; gap:22px;
+      padding:16px 0; border-top:1px solid var(--line); margin-top:64px;
+    }
+    .case-titleline h3 { margin:0; font-size:clamp(24px,3.2vw,46px); letter-spacing:-.055em; line-height:1; }
+    .case-titleline span { color:var(--muted); font-size:11px; letter-spacing:.12em; }
+    .phone-stage { min-height:560px; position:relative; isolation:isolate; overflow:hidden; display:flex; align-items:center; justify-content:center; margin:32px auto 46px; }
+    .phone-stage .device-shell { z-index:2; flex:none; width:min(320px,78vw); padding:0; border:0; background:var(--paper); box-shadow:0 22px 58px rgba(25,30,27,.25); }
+    .phone-stage .device-shell::after { content:""; position:absolute; inset:0; border:1.5px solid #454b47; border-radius:38px; pointer-events:none; }
+    .phone-stage .device-screen { border-radius:38px; }
+    .showcase-reel-wrap { position:absolute; inset:0; overflow:hidden; pointer-events:none; }
+    .showcase-reel { position:absolute; top:0; left:0; display:flex; width:max-content; gap:0; transition:transform .55s cubic-bezier(.22,1,.36,1); }
+    .showcase-reel img { display:block; flex:none; width:var(--card-width,320px); height:var(--card-height,400px); object-fit:cover; }
+    .device-shell {
+      width:min(100%,360px); padding:9px; border:1.5px solid #454b47;
+      border-radius:38px; background:var(--paper); position:relative;
+      box-shadow:0 16px 42px rgba(25,30,27,.1);
+    }
+    .device-screen { background:#f7f7f3; color:#202321; border-radius:29px; overflow:hidden; }
+    .device-earpiece { height:5px; width:54px; border-radius:8px; background:#454b47; margin:5px auto 8px; }
+    .post-topline { height:42px; display:flex; align-items:center; gap:8px; padding:0 12px; font-size:9px; letter-spacing:.06em; font-weight:700; }
+    .account-mark { width:25px; height:25px; display:grid; place-items:center; border-radius:50%; background:#e85d3e; color:#fff; font-size:8px; }
+    .post-more { margin-left:auto; letter-spacing:2px; }
+    .phone-image-window { aspect-ratio:4/5; position:relative; overflow:hidden; background:#d9d9d5; }
+    .phone-image-track { position:absolute; inset:0; display:flex; transition:transform .55s cubic-bezier(.22,1,.36,1); }
+    .phone-frame-image { flex:0 0 100%; min-width:0; width:100%; height:100%; object-fit:cover; }
+    .phone-index { position:absolute; top:12px; right:12px; padding:5px 8px; border-radius:20px; background:rgba(16,21,19,.75); color:#fff; font-size:9px; }
+    .phone-arrow { position:absolute; top:50%; transform:translateY(-50%); border:0; width:32px; height:32px; border-radius:50%; background:rgba(250,249,245,.9); color:#131715; cursor:pointer; font-size:23px; line-height:20px; }
+    .phone-prev { left:9px; } .phone-next { right:9px; }
+    .post-ui { height:54px; padding:8px 12px 7px; }
+    .post-icon-row { display:flex; gap:13px; align-items:center; font-size:16px; line-height:16px; }
+    .post-icon-row i { margin-left:auto; font-size:10px; letter-spacing:2px; font-style:normal; }
+    .phone-dots { display:flex; justify-content:center; gap:4px; padding-top:7px; }
+    .phone-dot { width:5px; height:5px; border:0; border-radius:50%; background:#bdc2bc; padding:0; cursor:pointer; }
+    .phone-dot.is-active { background:#477be7; }
+    .device-home { height:4px; width:80px; margin:8px auto 1px; border-radius:4px; background:#777d78; }
+    .device-caption { display:block; color:#a9b1ab; text-align:center; font-size:8px; letter-spacing:.12em; padding-top:9px; text-transform:uppercase; }
+    .carousel-wrap { margin-top:26px; }
+    .carousel-tools { display:flex; align-items:center; justify-content:space-between; gap:18px; padding:0 0 9px; }
+    .carousel-label { font-size:9px; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); }
+    .carousel-label i { font-style:normal; color:#9aa098; }
+    .carousel-cta { padding:7px 0; border:0; background:none; color:var(--red); font-size:10px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; cursor:pointer; }
+    .carousel-cta::after { content:' ↗'; display:inline-block; animation:ctaNudge 1.8s ease-in-out infinite; }
+    @keyframes ctaNudge { 50% { transform:translate(3px,-3px); } }
+    .slide-track { display:grid; grid-template-columns:repeat(var(--items),minmax(0,1fr)); gap:0; width:100%; }
+    .slide-track.separate { gap:clamp(14px,2vw,30px); }
+    .slide-track.single { width:min(540px,100%); }
+    .slide { min-width:0; margin:0; }
+    .slide-number { display:flex; justify-content:space-between; gap:3px; padding:0 4px 7px; color:var(--muted); font-size:8px; letter-spacing:.06em; white-space:nowrap; }
+    .slide-open { display:block; width:100%; padding:0; border:0; background:none; cursor:zoom-in; }
+    .slide img { width:100%; aspect-ratio:4/5; object-fit:cover; }
+    .slide-open:focus-visible { outline:2px solid var(--red); outline-offset:2px; position:relative; z-index:2; }
+    .image-lightbox { max-width:min(90vw,900px); max-height:94vh; padding:14px; border:1px solid var(--line); background:var(--paper); }
+    .image-lightbox::backdrop { background:rgba(15,20,18,.82); }
+    .image-lightbox img { max-width:86vw; max-height:84vh; width:auto; height:auto; object-fit:contain; }
+    .lightbox-close { display:block; margin:0 0 10px auto; padding:2px 8px; border:0; background:none; color:var(--ink); font-size:22px; cursor:pointer; }
+    .carousel-dialog { max-width:100vw; max-height:100dvh; padding:8px; border:0; background:transparent; overflow:hidden; }
+    .carousel-dialog::backdrop { background:rgba(15,20,18,.82); }
+    .carousel-dialog .device-shell { width:min(420px,84vw,calc((100dvh - 210px)*.8)); margin:auto; background:var(--paper); }
+    .carousel-dialog .phone-image-window img { width:100%; height:100%; object-fit:cover; }
+    .carousel-dialog .modal-close { display:block; margin:0 0 9px auto; padding:4px 9px; border:0; border-radius:50%; background:var(--paper); color:var(--ink); font-size:24px; cursor:pointer; }
+    .carousel-dialog .phone-dots { min-height:12px; }
+    .phone-arrow:disabled { opacity:.25; cursor:default; }
+    .video-gallery { display:grid; grid-template-columns:repeat(var(--video-cols),minmax(0,1fr)); gap:clamp(14px,2vw,30px); margin-top:28px; }
+    .motion-card { margin:0; }
+    .motion-card video { aspect-ratio:4/5; object-fit:contain; background:#1b211e; }
+    .motion-card figcaption { padding-top:8px; font-size:9px; color:var(--muted); letter-spacing:.1em; }
+    .culture-block + .culture-block { margin-top:90px; }
+    .culture-block h3 { margin:0 0 30px; font-size:clamp(28px,3vw,46px); letter-spacing:-.055em; }
+    .culture-feature { display:grid; grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr); gap:clamp(18px,3vw,44px); align-items:start; }
+    .culture-poster { margin:44px 0 0; }
+    .culture-poster img { width:100%; height:auto; }
+    .culture-feature .slide-track, .coral-block .slide-track { grid-template-columns:repeat(3,minmax(0,1fr)); gap:clamp(12px,1.5vw,24px); }
+    .case-split { margin-top:70px; }
+    .pair-stack .carousel-wrap + .carousel-wrap { margin-top:32px; padding-top:28px; border-top:1px solid var(--line); }
+    .simple-pair { margin-top:30px; }
+    .light-section { background:var(--paper); color:var(--ink); }
+    .split-section { display:block; }
+    .side-title { position:static; margin-bottom:38px; }
+    .side-title h2 { margin:0; font-size:clamp(46px,6vw,78px); letter-spacing:-.085em; line-height:.84; }
+    .side-title .section-index { display:block; padding-top:22px; color:var(--muted); font-size:10px; letter-spacing:.14em; text-transform:uppercase; }
+    .stacked-lanes .carousel-wrap + .carousel-wrap { margin-top:54px; }
+    .campaign-unit { border:1px solid var(--line); padding:clamp(18px,3vw,42px); margin-top:40px; }
+    .campaign-unit .carousel-wrap + .carousel-wrap { margin-top:46px; }
+    .campaign-unit h3 { margin:0 0 28px; font-size:clamp(26px,3vw,44px); letter-spacing:-.055em; }
+    .sports-section, .content-section, .event-section { background:var(--paper); }
+    .event-feature { display:block; }
+    .event-extras { margin-top:26px; }
+    .small-label { margin:0 0 8px; text-transform:uppercase; color:var(--muted); letter-spacing:.12em; font-size:8px; }
+    .event-section .carousel-label { color:#5b6258; }
+    .avulsas { background:var(--paper); color:var(--ink); }
+    .post-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:clamp(18px,2.2vw,34px); margin-top:28px; }
+    .post-grid-item { min-width:0; margin:0; }
+    .post-grid-item img { display:block; width:100%; aspect-ratio:4/5; object-fit:cover; }
+    .poster-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:clamp(12px,2vw,28px); }
+    .poster { margin:0; }
+    .poster img { width:100%; aspect-ratio:4/5; object-fit:cover; }
+    .poster figcaption { padding-top:10px; font-size:10px; letter-spacing:.04em; color:var(--muted); }
+    footer { display:flex; justify-content:space-between; gap:24px; padding:28px 4.8vw 34px; background:var(--paper); color:var(--muted); border-top:1px solid var(--line); text-transform:uppercase; font-size:9px; letter-spacing:.12em; }
+    @media(max-width:850px) {
+      .nav { max-width:62vw; }
+      .hero-main { min-height:600px; grid-template-columns:.9fr 1.1fr; gap:3vw; }
+      .hero-art { --hero-window:560px; }
+      .event-feature { grid-template-columns:1fr; }
+      .device-shell { width:min(355px,88vw); }
+      .poster-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+      .post-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+      .video-gallery { grid-template-columns:repeat(2,minmax(0,1fr)); }
+      .culture-feature { grid-template-columns:1fr; }
+      .culture-poster { margin:0; }
+    }
+    @media(max-width:560px) {
+      .topbar { padding:12px 5vw; gap:12px; }
+      .brand { font-size:9px; }
+      .nav a { font-size:8px; }
+      .hero { min-height:680px; padding:30px 5vw 32px; }
+      .hero-main { grid-template-columns:1fr; min-height:600px; gap:10px; align-items:start; }
+      .hero h1 { font-size:clamp(48px,12vw,66px); padding-top:26px; }
+      .hero-art { --hero-window:425px; width:95%; justify-self:end; gap:5px; }
+      .phone-stage { min-height:540px; margin:22px auto 34px; }
+      .hero-meta { font-size:8px; }
+      .section { padding:72px 5vw; }
+      .section-title { align-items:flex-start; flex-direction:column; }
+      .case-titleline { margin-top:44px; }
+      .slide-track { grid-template-columns:repeat(var(--mobile-items),minmax(0,1fr)); }
+      .slide-track.separate { gap:10px; }
+      .slide-number { font-size:7px; }
+      .video-gallery { grid-template-columns:1fr; }
+      .culture-feature .slide-track, .coral-block .slide-track { grid-template-columns:repeat(2,minmax(0,1fr)); }
+      .poster-grid { grid-template-columns:1fr 1fr; gap:11px; }
+      .post-grid { grid-template-columns:1fr; gap:18px; }
+      .poster figcaption { font-size:8px; }
+      footer { font-size:8px; flex-direction:column; }
+    }
+    @media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } .hero-art-track, .carousel-cta::after { animation:none; } *,*::before,*::after { transition-duration:.01ms !important; } }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#top">MATHEUS NETTO</a>
+    <nav class="nav" aria-label="Navegação do portfólio">
+      <a href="#campanhas">Campanhas</a>
+      <a href="#institucional">Institucional</a>
+      <a href="#conteudo">Conteúdo</a>
+      <a href="#eventos">Eventos</a>
+      <a href="#diversos">Diversos</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="top">
+    <div class="hero-main">
+      <div><h1>Portfólio<br><em>Educacional</em></h1><span class="hero-byline">por Matheus Netto</span></div>
+      <div class="hero-art" aria-label="Artes do portfólio em quatro colunas"><div class="hero-art-column"><div class="hero-art-track"><div class="hero-art-set"><figure><img src="media/cultura/trupe/Fantastica-Trupe-da-Esperanca-01.jpg" alt="Peça de teatro" loading="eager"></figure><figure><img src="media/aprovacao/notas-enem-01.jpg" alt="Resultado no ENEM" loading="eager"></figure><figure><img src="media/esportes/seletivas-01.jpeg" alt="Seletivas esportivas" loading="eager"></figure><figure><img src="media/cultura/trupe/Fantastica-Trupe-da-Esperanca-01.jpg" alt="Peça de teatro" loading="eager"></figure><figure><img src="media/aprovacao/notas-enem-01.jpg" alt="Resultado no ENEM" loading="eager"></figure><figure><img src="media/esportes/seletivas-01.jpeg" alt="Seletivas esportivas" loading="eager"></figure></div><div class="hero-art-set" aria-hidden="true"><figure><img src="media/cultura/trupe/Fantastica-Trupe-da-Esperanca-01.jpg" alt="" loading="eager"></figure><figure><img src="media/aprovacao/notas-enem-01.jpg" alt="" loading="eager"></figure><figure><img src="media/esportes/seletivas-01.jpeg" alt="" loading="eager"></figure><figure><img src="media/cultura/trupe/Fantastica-Trupe-da-Esperanca-01.jpg" alt="" loading="eager"></figure><figure><img src="media/aprovacao/notas-enem-01.jpg" alt="" loading="eager"></figure><figure><img src="media/esportes/seletivas-01.jpeg" alt="" loading="eager"></figure></div></div></div><div class="hero-art-column"><div class="hero-art-track"><div class="hero-art-set"><figure><img src="media/aprovacao/prepara-01.webp" alt="Campanha de aprovação" loading="eager"></figure><figure><img src="media/eventos/brasilidade-01.jpeg" alt="Festa julina" loading="eager"></figure><figure><img src="media/tempo-integral/menino-01.jpeg" alt="Tempo integral" loading="eager"></figure><figure><img src="media/aprovacao/prepara-01.webp" alt="Campanha de aprovação" loading="eager"></figure><figure><img src="media/eventos/brasilidade-01.jpeg" alt="Festa julina" loading="eager"></figure><figure><img src="media/tempo-integral/menino-01.jpeg" alt="Tempo integral" loading="eager"></figure></div><div class="hero-art-set" aria-hidden="true"><figure><img src="media/aprovacao/prepara-01.webp" alt="" loading="eager"></figure><figure><img src="media/eventos/brasilidade-01.jpeg" alt="" loading="eager"></figure><figure><img src="media/tempo-integral/menino-01.jpeg" alt="" loading="eager"></figure><figure><img src="media/aprovacao/prepara-01.webp" alt="" loading="eager"></figure><figure><img src="media/eventos/brasilidade-01.jpeg" alt="" loading="eager"></figure><figure><img src="media/tempo-integral/menino-01.jpeg" alt="" loading="eager"></figure></div></div></div><div class="hero-art-column"><div class="hero-art-track"><div class="hero-art-set"><figure><img src="media/aprovacao/redacao-enem-thumb.jpg" alt="Redação ENEM" loading="eager"></figure><figure><img src="media/conteudo/cnv-02.jpeg" alt="Comunicação não violenta" loading="eager"></figure><figure><img src="media/cultura/coral/Coral-70-anos-02.jpeg" alt="Coral Academia" loading="eager"></figure><figure><img src="media/aprovacao/redacao-enem-thumb.jpg" alt="Redação ENEM" loading="eager"></figure><figure><img src="media/conteudo/cnv-02.jpeg" alt="Comunicação não violenta" loading="eager"></figure><figure><img src="media/cultura/coral/Coral-70-anos-02.jpeg" alt="Coral Academia" loading="eager"></figure></div><div class="hero-art-set" aria-hidden="true"><figure><img src="media/aprovacao/redacao-enem-thumb.jpg" alt="" loading="eager"></figure><figure><img src="media/conteudo/cnv-02.jpeg" alt="" loading="eager"></figure><figure><img src="media/cultura/coral/Coral-70-anos-02.jpeg" alt="" loading="eager"></figure><figure><img src="media/aprovacao/redacao-enem-thumb.jpg" alt="" loading="eager"></figure><figure><img src="media/conteudo/cnv-02.jpeg" alt="" loading="eager"></figure><figure><img src="media/cultura/coral/Coral-70-anos-02.jpeg" alt="" loading="eager"></figure></div></div></div><div class="hero-art-column"><div class="hero-art-track"><div class="hero-art-set"><figure><img src="media/conteudo/dicas-vestibulandos-01.jpeg" alt="Revisionais vestibulares" loading="eager"></figure><figure><img src="media/eventos/brasilidade-09.jpg" alt="Atrações da Festa Julina" loading="eager"></figure><figure><img src="media/conteudo/eu-cuido-01.jpg" alt="Eu cuido de mim e de você" loading="eager"></figure><figure><img src="media/conteudo/dicas-vestibulandos-01.jpeg" alt="Revisionais vestibulares" loading="eager"></figure><figure><img src="media/eventos/brasilidade-09.jpg" alt="Atrações da Festa Julina" loading="eager"></figure><figure><img src="media/conteudo/eu-cuido-01.jpg" alt="Eu cuido de mim e de você" loading="eager"></figure></div><div class="hero-art-set" aria-hidden="true"><figure><img src="media/conteudo/dicas-vestibulandos-01.jpeg" alt="" loading="eager"></figure><figure><img src="media/eventos/brasilidade-09.jpg" alt="" loading="eager"></figure><figure><img src="media/conteudo/eu-cuido-01.jpg" alt="" loading="eager"></figure><figure><img src="media/conteudo/dicas-vestibulandos-01.jpeg" alt="" loading="eager"></figure><figure><img src="media/eventos/brasilidade-09.jpg" alt="" loading="eager"></figure><figure><img src="media/conteudo/eu-cuido-01.jpg" alt="" loading="eager"></figure></div></div></div></div>
+    </div>
+    <div class="hero-meta"><span>Colégio Academia · Juiz de Fora</span><span>2022—2026</span></div>
+  </section>
+
+  <main>
+    <section class="section approval" id="campanhas">
+      <div class="section-title"><h2>Aprovações em<br>vestibulares</h2><span class="section-index">CAMPANHAS · 2023—2026</span></div>
+      
+    <article class="feature-case ">
+      <div class="case-titleline">
+        <h3>Campanha 2023</h3>
+        <span>O Colégio Academia prepara e aprova</span>
+      </div>
+      
+    <div class="phone-stage">
+      <div class="showcase-reel-wrap" aria-hidden="true">
+        <div class="showcase-reel"><img src="media/aprovacao/prepara-01.webp" alt="" loading="eager"><img src="media/aprovacao/prepara-02.webp" alt="" loading="eager"></div>
+      </div>
+      
+    <div class="device-shell" data-phone>
+      <div class="device-screen">
+        <div class="device-earpiece"></div>
+        <div class="post-topline">
+          <span class="account-mark">CA</span>
+          <span>COLÉGIO ACADEMIA</span>
+          <span class="post-more">•••</span>
+        </div>
+        <div class="phone-image-window">
+          <div class="phone-image-track"><img class="phone-frame-image is-active" src="media/aprovacao/prepara-01.webp" alt="Prepara e aprova" loading="lazy" data-phone-slide="0"><img class="phone-frame-image " src="media/aprovacao/prepara-02.webp" alt="Aprovações" loading="lazy" data-phone-slide="1"></div>
+          <button type="button" class="phone-arrow phone-prev" aria-label="Lâmina anterior">‹</button>
+          <button type="button" class="phone-arrow phone-next" aria-label="Próxima lâmina">›</button>
+          <span class="phone-index"><b data-phone-current>01</b> / 02</span>
+        </div>
+        <div class="post-ui">
+          <div class="post-icon-row"><span>♡</span><span>○</span><span>↗</span><i>•••</i></div>
+          <div class="phone-dots"><button type="button" class="phone-dot is-active" aria-label="Ir para lâmina 1" data-phone-dot="0"></button><button type="button" class="phone-dot " aria-label="Ir para lâmina 2" data-phone-dot="1"></button></div>
+        </div>
+      </div>
+      <div class="device-home"></div>
+      <span class="device-caption">POST EM CARROSSEL · 01/02</span>
+    </div>
+    </div>
+    </article>
+      <article class="feature-case case-split">
+        <div class="case-titleline"><h3>Campanha de aprovação · 2024</h3></div>
+        <div class="video-gallery" style="--video-cols:2"><figure class="motion-card"><video controls playsinline preload="metadata" autoplay muted loop><source src="media/videos/video-03.mp4" type="video/mp4"></video><figcaption>VÍDEO 03</figcaption></figure><figure class="motion-card"><video controls playsinline preload="metadata" autoplay muted loop><source src="media/videos/video-04.mp4" type="video/mp4"></video><figcaption>VÍDEO 04</figcaption></figure></div>
+      </article>
+      <article class="feature-case case-split">
+        <div class="case-titleline"><h3>Campanha de aprovação · 2025</h3></div>
+        
+    <div class="carousel-wrap">
+      <div class="carousel-tools">
+        <span class="carousel-label">Série de posts <i>· 04 posts</i></span>
+        
+      </div>
+      <div class="slide-track separate" data-carousel="false" style="--items:4;--mobile-items:4">
+        
+    <figure class="slide ">
+      <div class="slide-number">POST <b>01 / 04</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar Redação ENEM · 980 pontos" data-lightbox-src="media/aprovacao/notas-enem-01.jpg">
+        <img src="media/aprovacao/notas-enem-01.jpg" alt="Redação ENEM · 980 pontos" loading="lazy">
+      </button>
+    </figure>
+    <figure class="slide ">
+      <div class="slide-number">POST <b>02 / 04</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar Redação ENEM · 960 pontos" data-lightbox-src="media/aprovacao/notas-enem-02.jpg">
+        <img src="media/aprovacao/notas-enem-02.jpg" alt="Redação ENEM · 960 pontos" loading="lazy">
+      </button>
+    </figure>
+    <figure class="slide ">
+      <div class="slide-number">POST <b>03 / 04</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar Redação ENEM · 960 pontos" data-lightbox-src="media/aprovacao/notas-enem-03.jpg">
+        <img src="media/aprovacao/notas-enem-03.jpg" alt="Redação ENEM · 960 pontos" loading="lazy">
+      </button>
+    </figure>
+    <figure class="slide ">
+      <div class="slide-number">POST <b>04 / 04</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar Redação ENEM · 960 pontos" data-lightbox-src="media/aprovacao/notas-enem-04.jpg">
+        <img src="media/aprovacao/notas-enem-04.jpg" alt="Redação ENEM · 960 pontos" loading="lazy">
+      </button>
+    </figure>
+      </div>
+    </div>
+        <div class="video-gallery" style="--video-cols:3"><figure class="motion-card"><video controls playsinline preload="metadata" autoplay muted loop><source src="media/videos/video-05.mp4" type="video/mp4"></video><figcaption>VÍDEO 05</figcaption></figure><figure class="motion-card"><video controls playsinline preload="metadata" autoplay muted loop><source src="media/videos/video-06.mp4" type="video/mp4"></video><figcaption>VÍDEO 06</figcaption></figure><figure class="motion-card"><video controls playsinline preload="metadata" autoplay muted loop><source src="media/videos/video-07.mp4" type="video/mp4"></video><figcaption>VÍDEO 07</figcaption></figure></div>
+      </article>
+      <article class="feature-case case-split">
+        <div class="case-titleline"><h3>Campanha de aprovação · 2026</h3></div>
+        <div class="post-grid"><figure class="post-grid-item"><button type="button" class="slide-open" data-lightbox-src="media/aprovacao/2026/Aprovados-2026-01.jpg" aria-label="Ampliar Amanda Medina · Jornalismo"><img src="media/aprovacao/2026/Aprovados-2026-01.jpg" alt="Amanda Medina · Jornalismo" loading="lazy"></button></figure><figure class="post-grid-item"><button type="button" class="slide-open" data-lightbox-src="media/aprovacao/2026/Aprovados-2026-02.jpg" aria-label="Ampliar Marina Porto · Direito"><img src="media/aprovacao/2026/Aprovados-2026-02.jpg" alt="Marina Porto · Direito" loading="lazy"></button></figure><figure class="post-grid-item"><button type="button" class="slide-open" data-lightbox-src="media/aprovacao/2026/Aprovados-2026-03.jpg" aria-label="Ampliar Guilherme Rubbioli · Engenharia Civil e Engenharia de Produção"><img src="media/aprovacao/2026/Aprovados-2026-03.jpg" alt="Guilherme Rubbioli · Engenharia Civil e Engenharia de Produção" loading="lazy"></button></figure></div>
+      </article>
+    </section>
+
+    <section class="section" id="revisionais">
+      <div class="section-title"><h2>Revisionais<br>vestibulares</h2><span class="section-index">CARROSSEL · VÍDEOS · AULÃO</span></div>
+      
+    <div class="phone-stage">
+      <div class="showcase-reel-wrap" aria-hidden="true">
+        <div class="showcase-reel"><img src="media/conteudo/dicas-vestibulandos-01.jpeg" alt="" loading="eager"><img src="media/conteudo/dicas-vestibulandos-02.jpeg" alt="" loading="eager"><img src="media/conteudo/dicas-vestibulandos-03.jpeg" alt="" loading="eager"><img src="media/conteudo/dicas-vestibulandos-04.jpeg" alt="" loading="eager"><img src="media/conteudo/dicas-vestibulandos-05.jpeg" alt="" loading="eager"><img src="media/conteudo/dicas-vestibulandos-06.jpeg" alt="" loading="eager"><img src="media/conteudo/dicas-vestibulandos-07.jpeg" alt="" loading="eager"><img src="media/conteudo/dicas-vestibulandos-08.jpeg" alt="" loading="eager"></div>
+      </div>
+      
+    <div class="device-shell" data-phone>
+      <div class="device-screen">
+        <div class="device-earpiece"></div>
+        <div class="post-topline">
+          <span class="account-mark">CA</span>
+          <span>COLÉGIO ACADEMIA</span>
+          <span class="post-more">•••</span>
+        </div>
+        <div class="phone-image-window">
+          <div class="phone-image-track"><img class="phone-frame-image is-active" src="media/conteudo/dicas-vestibulandos-01.jpeg" alt="Lâmina 01 de 08" loading="lazy" data-phone-slide="0"><img class="phone-frame-image " src="media/conteudo/dicas-vestibulandos-02.jpeg" alt="Lâmina 02 de 08" loading="lazy" data-phone-slide="1"><img class="phone-frame-image " src="media/conteudo/dicas-vestibulandos-03.jpeg" alt="Lâmina 03 de 08" loading="lazy" data-phone-slide="2"><img class="phone-frame-image " src="media/conteudo/dicas-vestibulandos-04.jpeg" alt="Lâmina 04 de 08" loading="lazy" data-phone-slide="3"><img class="phone-frame-image " src="media/conteudo/dicas-vestibulandos-05.jpeg" alt="Lâmina 05 de 08" loading="lazy" data-phone-slide="4"><img class="phone-frame-image " src="media/conteudo/dicas-vestibulandos-06.jpeg" alt="Lâmina 06 de 08" loading="lazy" data-phone-slide="5"><img class="phone-frame-image " src="media/conteudo/dicas-vestibulandos-07.jpeg" alt="Lâmina 07 de 08" loading="lazy" data-phone-slide="6"><img class="phone-frame-image " src="media/conteudo/dicas-vestibulandos-08.jpeg" alt="Lâmina 08 de 08" loading="lazy" data-phone-slide="7"></div>
+          <button type="button" class="phone-arrow phone-prev" aria-label="Lâmina anterior">‹</button>
+          <button type="button" class="phone-arrow phone-next" aria-label="Próxima lâmina">›</button>
+          <span class="phone-index"><b data-phone-current>01</b> / 08</span>
+        </div>
+        <div class="post-ui">
+          <div class="post-icon-row"><span>♡</span><span>○</span><span>↗</span><i>•••</i></div>
+          <div class="phone-dots"><button type="button" class="phone-dot is-active" aria-label="Ir para lâmina 1" data-phone-dot="0"></button><button type="button" class="phone-dot " aria-label="Ir para lâmina 2" data-phone-dot="1"></button><button type="button" class="phone-dot " aria-label="Ir para lâmina 3" data-phone-dot="2"></button><button type="button" class="phone-dot " aria-label="Ir para lâmina 4" data-phone-dot="3"></button><button type="button" class="phone-dot " aria-label="Ir para lâmina 5" data-phone-dot="4"></button><button type="button" class="phone-dot " aria-label="Ir para lâmina 6" data-phone-dot="5"></button><button type="button" class="phone-dot " aria-label="Ir para lâmina 7" data-phone-dot="6"></button><button type="button" class="phone-dot " aria-label="Ir para lâmina 8" data-phone-dot="7"></button></div>
+        </div>
+      </div>
+      <div class="device-home"></div>
+      <span class="device-caption">REVISIONAIS VESTIBULARES · 01/08</span>
+    </div>
+    </div>
+      
+    <div class="carousel-wrap">
+      <div class="carousel-tools">
+        <span class="carousel-label">Dicas para vestibulandos <i>· 08 lâminas</i></span>
+        <button class="carousel-cta" type="button" data-open-carousel>Clique para ver o carrossel</button>
+      </div>
+      <div class="slide-track" data-carousel="true" style="--items:8;--mobile-items:4">
+        
+    <figure class="slide ">
+      <div class="slide-number">LÂMINA <b>01 / 08</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar Dicas para vestibulandos · lâmina 01" data-lightbox-src="media/conteudo/dicas-vestibulandos-01.jpeg">
+        <img src="media/conteudo/dicas-vestibulandos-01.jpeg" alt="Dicas para vestibulandos · lâmina 01" loading="lazy">
+      </button>
+    </figure>
+    <figure class="slide ">
+      <div class="slide-number">LÂMINA <b>02 / 08</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar Dicas para vestibulandos · lâmina 02" data-lightbox-src="media/conteudo/dicas-vestibulandos-02.jpeg">
+        <img src="media/conteudo/dicas-vestibulandos-02.jpeg" alt="Dicas para vestibulandos · lâmina 02" loading="lazy">
+      </button>
+    </figure>
+    <figure class="slide ">
+      <div class="slide-number">LÂMINA <b>03 / 08</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar Dicas para vestibulandos · lâmina 03" data-lightbox-src="media/conteudo/dicas-vestibulandos-03.jpeg">
+        <img src="media/conteudo/dicas-vestibulandos-03.jpeg" alt="Dicas para vestibulandos · lâmina 03" loading="lazy">
+      </button>
+    </figure>
+    <figure class="slide ">
+      <div class="slide-number">LÂMINA <b>04 / 08</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar Dicas para vestibulandos · lâmina 04" data-lightbox-src="media/conteudo/dicas-vestibulandos-04.jpeg">
+        <img src="media/conteudo/dicas-vestibulandos-04.jpeg" alt="Dicas para vestibulandos · lâmina 04" loading="lazy">
+      </button>
+    </figure>
+    <figure class="slide ">
+      <div class="slide-number">LÂMINA <b>05 / 08</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar Dicas para vestibulandos · lâmina 05" data-lightbox-src="media/conteudo/dicas-vestibulandos-05.jpeg">
+        <img src="media/conteudo/dicas-vestibulandos-05.jpeg" alt="Dicas para vestibulandos · lâmina 05" loading="lazy">
+      </button>
+    </figure>
+    <figure class="slide ">
+      <div class="slide-number">LÂMINA <b>06 / 08</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar Dicas para vestibulandos · lâmina 06" data-lightbox-src="media/conteudo/dicas-vestibulandos-06.jpeg">
+        <img src="media/conteudo/dicas-vestibulandos-06.jpeg" alt="Dicas para vestibulandos · lâmina 06" loading="lazy">
+      </button>
+    </figure>
+    <figure class="slide ">
+      <div class="slide-number">LÂMINA <b>07 / 08</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar Dicas para vestibulandos · lâmina 07" data-lightbox-src="media/conteudo/dicas-vestibulandos-07.jpeg">
+        <img src="media/conteudo/dicas-vestibulandos-07.jpeg" alt="Dicas para vestibulandos · lâmina 07" loading="lazy">
+      </button>
+    </figure>
+    <figure class="slide ">
+      <div class="slide-number">LÂMINA <b>08 / 08</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar Dicas para vestibulandos · lâmina 08" data-lightbox-src="media/conteudo/dicas-vestibulandos-08.jpeg">
+        <img src="media/conteudo/dicas-vestibulandos-08.jpeg" alt="Dicas para vestibulandos · lâmina 08" loading="lazy">
+      </button>
+    </figure>
+      </div>
+    </div>
+      <article class="feature-case case-split">
+        <div class="case-titleline"><h3>Redação ENEM</h3></div>
+        <div class="video-gallery" style="--video-cols:3"><figure class="motion-card"><video controls playsinline preload="metadata" autoplay muted loop><source src="media/aprovacao/redacao-enem-video.mp4" type="video/mp4"></video><figcaption>REDAÇÃO ENEM</figcaption></figure><figure class="motion-card"><video controls playsinline preload="metadata" autoplay muted loop><source src="media/videos/video-01.mp4" type="video/mp4"></video><figcaption>DICAS ENEM · 01</figcaption></figure><figure class="motion-card"><video controls playsinline preload="metadata" autoplay muted loop><source src="media/videos/video-02.mp4" type="video/mp4"></video><figcaption>DICAS ENEM · 02</figcaption></figure></div>
+      </article>
+    </section>
+
+    <section class="section sports-section" id="esportes">
+      <div class="section-title"><h2>Seletivas esportivas</h2><span class="section-index">CAMPANHA · CARROSSEL</span></div>
+      
+    <div class="phone-stage">
+      <div class="showcase-reel-wrap" aria-hidden="true">
+        <div class="showcase-reel"><img src="media/esportes/seletivas-01.jpeg" alt="" loading="eager"><img src="media/esportes/seletivas-02.jpeg" alt="" loading="eager"><img src="media/esportes/seletivas-03.jpeg" alt="" loading="eager"><img src="media/esportes/seletivas-04.jpeg" alt="" loading="eager"><img src="media/esportes/seletivas-05.jpeg" alt="" loading="eager"><img src="media/esportes/seletivas-06.jpeg" alt="" loading="eager"><img src="media/esportes/seletivas-07.jpeg" alt="" loading="eager"><img src="media/esportes/seletivas-08.jpeg" alt="" loading="eager"></div>
+      </div>
+      
+    <div class="device-shell" data-phone>
+      <div class="device-screen">
+        <div class="device-earpiece"></div>
+        <div class="post-topline">
+          <span class="account-mark">CA</span>
+          <span>COLÉGIO ACADEMIA</span>
+          <span class="post-more">•••</span>
+        </div>
+        <div class="phone-image-window">
+          <div class="phone-image-track"><img class="phone-frame-image is-active" src="media/esportes/seletivas-01.jpeg" alt="Lâmina 01 de 08" loading="lazy" data-phone-slide="0"><img class="phone-frame-image " src="media/esportes/seletivas-02.jpeg" alt="Lâmina 02 de 08" loading="lazy" data-phone-slide="1"><img class="phone-frame-image " src="media/esportes/seletivas-03.jpeg" alt="Lâmina 03 de 08" loading="lazy" data-phone-slide="2"><img class="phone-frame-image " src="media/esportes/seletivas-04.jpeg" alt="Lâmina 04 de 08" loading="lazy" data-phone-slide="3"><img class="phone-frame-image " src="media/esportes/seletivas-05.jpeg" alt="Lâmina 05 de 08" loading="lazy" data-phone-slide="4"><img class="phone-frame-image " src="media/esportes/seletivas-06.jpeg" alt="Lâmina 06 de 08" loading="lazy" data-phone-slide="5"><img class="phone-frame-image " src="media/esportes/seletivas-07.jpeg" alt="Lâmina 07 de 08" loading="lazy" data-phone-slide="6"><img class="phone-frame-image " src="media/esportes/seletivas-08.jpeg" alt="Lâmina 08 de 08" loading="lazy" data-phone-slide="7"></div>
+          <button type="button" class="phone-arrow phone-prev" aria-label="Lâmina anterior">‹</button>
+          <button type="button" class="phone-arrow phone-next" aria-label="Próxima lâmina">›</button>
+          <span class="phone-index"><b data-phone-current>01</b> / 08</span>
+        </div>
+        <div class="post-ui">
+          <div class="post-icon-row"><span>♡</span><span>○</span><span>↗</span><i>•••</i></div>
+          <div class="phone-dots"><button type="button" class="phone-dot is-active" aria-label="Ir para lâmina 1" data-phone-dot="0"></button><button type="button" class="phone-dot " aria-label="Ir para lâmina 2" data-phone-dot="1"></button><button type="button" class="phone-dot " aria-label="Ir para lâmina 3" data-phone-dot="2"></button><button type="button" class="phone-dot " aria-label="Ir para lâmina 4" data-phone-dot="3"></button><button type="button" class="phone-dot " aria-label="Ir para lâmina 5" data-phone-dot="4"></button><button type="button" class="phone-dot " aria-label="Ir para lâmina 6" data-phone-dot="5"></button><button type="button" class="phone-dot " aria-label="Ir para lâmina 7" data-phone-dot="6"></button><button type="button" class="phone-dot " aria-label="Ir para lâmina 8" data-phone-dot="7"></button></div>
+        </div>
+      </div>
+      <div class="device-home"></div>
+      <span class="device-caption">SELETIVAS ESPORTIVAS · 01/08</span>
+    </div>
+    </div>
+      
+    <div class="carousel-wrap">
+      <div class="carousel-tools">
+        <span class="carousel-label">Seletivas esportivas <i>· 08 lâminas</i></span>
+        <button class="carousel-cta" type="button" data-open-carousel>Clique para ver o carrossel</button>
+      </div>
+      <div class="slide-track" data-carousel="true" style="--items:8;--mobile-items:4">
+        
+    <figure class="slide ">
+      <div class="slide-number">LÂMINA <b>01 / 08</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar Seletivas esportivas · lâmina 01" data-lightbox-src="media/esportes/seletivas-01.jpeg">
+        <img src="media/esportes/seletivas-01.jpeg" alt="Seletivas esportivas · lâmina 01" loading="lazy">
+      </button>
+    </figure>
+    <figure class="slide ">
+      <div class="slide-number">LÂMINA <b>02 / 08</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar Seletivas esportivas · lâmina 02" data-lightbox-src="media/esportes/seletivas-02.jpeg">
+        <img src="media/esportes/seletivas-02.jpeg" alt="Seletivas esportivas · lâmina 02" loading="lazy">
+      </button>
+    </figure>
+    <figure class="slide ">
+      <div class="slide-number">LÂMINA <b>03 / 08</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar Seletivas esportivas · lâmina 03" data-lightbox-src="media/esportes/seletivas-03.jpeg">
+        <img src="media/esportes/seletivas-03.jpeg" alt="Seletivas esportivas · lâmina 03" loading="lazy">
+      </button>
+    </figure>
+    <figure class="slide ">
+      <div class="slide-number">LÂMINA <b>04 / 08</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar Seletivas esportivas · lâmina 04" data-lightbox-src="media/esportes/seletivas-04.jpeg">
+        <img src="media/esportes/seletivas-04.jpeg" alt="Seletivas esportivas · lâmina 04" loading="lazy">
+      </button>
+    </figure>
+    <figure class="slide ">
+      <div class="slide-number">LÂMINA <b>05 / 08</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar Seletivas esportivas · lâmina 05" data-lightbox-src="media/esportes/seletivas-05.jpeg">
+        <img src="media/esportes/seletivas-05.jpeg" alt="Seletivas esportivas · lâmina 05" loading="lazy">
+      </button>
+    </figure>
+    <figure class="slide ">
+      <div class="slide-number">LÂMINA <b>06 / 08</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar Seletivas esportivas · lâmina 06" data-lightbox-src="media/esportes/seletivas-06.jpeg">
+        <img src="media/esportes/seletivas-06.jpeg" alt="Seletivas esportivas · lâmina 06" loading="lazy">
+      </button>
+    </figure>
+    <figure class="slide ">
+      <div class="slide-number">LÂMINA <b>07 / 08</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar Seletivas esportivas · lâmina 07" data-lightbox-src="media/esportes/seletivas-07.jpeg">
+        <img src="media/esportes/seletivas-07.jpeg" alt="Seletivas esportivas · lâmina 07" loading="lazy">
+      </button>
+    </figure>
+    <figure class="slide ">
+      <div class="slide-number">LÂMINA <b>08 / 08</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar Seletivas esportivas · lâmina 08" data-lightbox-src="media/esportes/seletivas-08.jpeg">
+        <img src="media/esportes/seletivas-08.jpeg" alt="Seletivas esportivas · lâmina 08" loading="lazy">
+      </button>
+    </figure>
+      </div>
+    </div>
+    </section>
+
+    <section class="section light-section" id="institucional">
+      <div class="section-title"><h2>Institucional</h2><span class="section-index">CAMPANHAS</span></div>
+      <article class="feature-case">
+        <div class="case-titleline"><h3>Tempo integral</h3><span>02 CARROSSÉIS</span></div>
+        <div class="stacked-lanes">
+    <div class="carousel-wrap">
+      <div class="carousel-tools">
+        <span class="carousel-label">Versão 01 <i>· 09 lâminas</i></span>
+        <button class="carousel-cta" type="button" data-open-carousel>Clique para ver o carrossel</button>
+      </div>
+      <div class="slide-track" data-carousel="true" style="--items:9;--mobile-items:4">
+        
+    <figure class="slide ">
+      <div class="slide-number">LÂMINA <b>01 / 09</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar Tempo integral · versão 01 · lâmina 01" data-lightbox-src="media/tempo-integral/menina-01.jpeg">
+        <img src="media/tempo-integral/menina-01.jpeg" alt="Tempo integral · versão 01 · lâmina 01" loading="lazy">
+      </button>
+    </figure>
+    <figure class="slide ">
+      <div class="slide-number">LÂMINA <b>02 / 09</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar Tempo integral · versão 01 · lâmina 02" data-lightbox-src="media/tempo-integral/menina-02.jpeg">
+        <img src="media/tempo-integral/menina-02.jpeg" alt="Tempo integral · versão 01 · lâmina 02" loading="lazy">
+      </button>
+    </figure>
+    <figure class="slide ">
+      <div class="slide-number">LÂMINA <b>03 / 09</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar Tempo integral · versão 01 · lâmina 03" data-lightbox-src="media/tempo-integral/menina-03.jpeg">
+        <img src="media/tempo-integral/menina-03.jpeg" alt="Tempo integral · versão 01 · lâmina 03" loading="lazy">
+      </button>
+    </figure>
+    <figure class="slide ">
+      <div class="slide-number">LÂMINA <b>04 / 09</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar Tempo integral · versão 01 · lâmina 04" data-lightbox-src="media/tempo-integral/menina-04.jpeg">
+        <img src="media/tempo-integral/menina-04.jpeg" alt="Tempo integral · versão 01 · lâmina 04" loading="lazy">
+      </button>
+    </figure>
+    <figure class="slide ">
+      <div class="slide-number">LÂMINA <b>05 / 09</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar Tempo integral · versão 01 · lâmina 05" data-lightbox-src="media/tempo-integral/menina-05.jpeg">
+        <img src="media/tempo-integral/menina-05.jpeg" alt="Tempo integral · versão 01 · lâmina 05" loading="lazy">
+      </button>
+    </figure>
+    <figure class="slide ">
+      <div class="slide-number">LÂMINA <b>06 / 09</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar Tempo integral · versão 01 · lâmina 06" data-lightbox-src="media/tempo-integral/menina-06.jpeg">
+        <img src="media/tempo-integral/menina-06.jpeg" alt="Tempo integral · versão 01 · lâmina 06" loading="lazy">
+      </button>
+    </figure>
+    <figure class="slide ">
+      <div class="slide-number">LÂMINA <b>07 / 09</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar Tempo integral · versão 01 · lâmina 07" data-lightbox-src="media/tempo-integral/menina-07.jpeg">
+        <img src="media/tempo-integral/menina-07.jpeg" alt="Tempo integral · versão 01 · lâmina 07" loading="lazy">
+      </button>
+    </figure>
+    <figure class="slide ">
+      <div class="slide-number">LÂMINA <b>08 / 09</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar Tempo integral · versão 01 · lâmina 08" data-lightbox-src="media/tempo-integral/menina-08.jpeg">
+        <img src="media/tempo-integral/menina-08.jpeg" alt="Tempo integral · versão 01 · lâmina 08" loading="lazy">
+      </button>
+    </figure>
+    <figure class="slide ">
+      <div class="slide-number">LÂMINA <b>09 / 09</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar Tempo integral · versão 01 · lâmina 09" data-lightbox-src="media/tempo-integral/menina-09.jpeg">
+        <img src="media/tempo-integral/menina-09.jpeg" alt="Tempo integral · versão 01 · lâmina 09" loading="lazy">
+      </button>
+    </figure>
+      </div>
+    </div>
+    <div class="carousel-wrap">
+      <div class="carousel-tools">
+        <span class="carousel-label">Versão 02 <i>· 09 lâminas</i></span>
+        <button class="carousel-cta" type="button" data-open-carousel>Clique para ver o carrossel</button>
+      </div>
+      <div class="slide-track" data-carousel="true" style="--items:9;--mobile-items:4">
+        
+    <figure class="slide ">
+      <div class="slide-number">LÂMINA <b>01 / 09</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar Tempo integral · versão 02 · lâmina 01" data-lightbox-src="media/tempo-integral/menino-01.jpeg">
+        <img src="media/tempo-integral/menino-01.jpeg" alt="Tempo integral · versão 02 · lâmina 01" loading="lazy">
+      </button>
+    </figure>
+    <figure class="slide ">
+      <div class="slide-number">LÂMINA <b>02 / 09</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar Tempo integral · versão 02 · lâmina 02" data-lightbox-src="media/tempo-integral/menino-02.jpeg">
+        <img src="media/tempo-integral/menino-02.jpeg" alt="Tempo integral · versão 02 · lâmina 02" loading="lazy">
+      </button>
+    </figure>
+    <figure class="slide ">
+      <div class="slide-number">LÂMINA <b>03 / 09</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar Tempo integral · versão 02 · lâmina 03" data-lightbox-src="media/tempo-integral/menino-03.jpeg">
+        <img src="media/tempo-integral/menino-03.jpeg" alt="Tempo integral · versão 02 · lâmina 03" loading="lazy">
+      </button>
+    </figure>
+    <figure class="slide ">
+      <div class="slide-number">LÂMINA <b>04 / 09</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar Tempo integral · versão 02 · lâmina 04" data-lightbox-src="media/tempo-integral/menino-04.jpeg">
+        <img src="media/tempo-integral/menino-04.jpeg" alt="Tempo integral · versão 02 · lâmina 04" loading="lazy">
+      </button>
+    </figure>
+    <figure class="slide ">
+      <div class="slide-number">LÂMINA <b>05 / 09</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar Tempo integral · versão 02 · lâmina 05" data-lightbox-src="media/tempo-integral/menino-05.jpeg">
+        <img src="media/tempo-integral/menino-05.jpeg" alt="Tempo integral · versão 02 · lâmina 05" loading="lazy">
+      </button>
+    </figure>
+    <figure class="slide ">
+      <div class="slide-number">LÂMINA <b>06 / 09</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar Tempo integral · versão 02 · lâmina 06" data-lightbox-src="media/tempo-integral/menino-06.jpeg">
+        <img src="media/tempo-integral/menino-06.jpeg" alt="Tempo integral · versão 02 · lâmina 06" loading="lazy">
+      </button>
+    </figure>
+    <figure class="slide ">
+      <div class="slide-number">LÂMINA <b>07 / 09</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar Tempo integral · versão 02 · lâmina 07" data-lightbox-src="media/tempo-integral/menino-07.jpeg">
+        <img src="media/tempo-integral/menino-07.jpeg" alt="Tempo integral · versão 02 · lâmina 07" loading="lazy">
+      </button>
+    </figure>
+    <figure class="slide ">
+      <div class="slide-number">LÂMINA <b>08 / 09</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar Tempo integral · versão 02 · lâmina 08" data-lightbox-src="media/tempo-integral/menino-08.jpeg">
+        <img src="media/tempo-integral/menino-08.jpeg" alt="Tempo integral · versão 02 · lâmina 08" loading="lazy">
+      </button>
+    </figure>
+    <figure class="slide ">
+      <div class="slide-number">LÂMINA <b>09 / 09</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar Tempo integral · versão 02 · lâmina 09" data-lightbox-src="media/tempo-integral/menino-09.jpeg">
+        <img src="media/tempo-integral/menino-09.jpeg" alt="Tempo integral · versão 02 · lâmina 09" loading="lazy">
+      </button>
+    </figure>
+      </div>
+    </div></div>
+      </article>
+      <article class="feature-case case-split">
+        <div class="case-titleline"><h3>Volta às aulas</h3></div>
+        
+    <div class="carousel-wrap">
+      <div class="carousel-tools">
+        <span class="carousel-label">Volta às aulas <i>· 04 posts</i></span>
+        
+      </div>
+      <div class="slide-track separate" data-carousel="false" style="--items:4;--mobile-items:4">
+        
+    <figure class="slide ">
+      <div class="slide-number">POST <b>01 / 04</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar " data-lightbox-src="media/institucional/volta-aulas/Volta-as-aulas-01.jpg">
+        <img src="media/institucional/volta-aulas/Volta-as-aulas-01.jpg" alt="" loading="lazy">
+      </button>
+    </figure>
+    <figure class="slide ">
+      <div class="slide-number">POST <b>02 / 04</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar " data-lightbox-src="media/institucional/volta-aulas/Volta-as-aulas-02.jpeg">
+        <img src="media/institucional/volta-aulas/Volta-as-aulas-02.jpeg" alt="" loading="lazy">
+      </button>
+    </figure>
+    <figure class="slide ">
+      <div class="slide-number">POST <b>03 / 04</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar " data-lightbox-src="media/institucional/volta-aulas/Volta-as-aulas-03.jpg">
+        <img src="media/institucional/volta-aulas/Volta-as-aulas-03.jpg" alt="" loading="lazy">
+      </button>
+    </figure>
+    <figure class="slide ">
+      <div class="slide-number">POST <b>04 / 04</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar " data-lightbox-src="media/institucional/volta-aulas/Volta-as-aulas-04.jpg">
+        <img src="media/institucional/volta-aulas/Volta-as-aulas-04.jpg" alt="" loading="lazy">
+      </button>
+    </figure>
+      </div>
+    </div>
+      </article>
+      <article class="feature-case case-split">
+        <div class="case-titleline"><h3>Cantinho preferido</h3></div>
+        
+    <div class="carousel-wrap">
+      <div class="carousel-tools">
+        <span class="carousel-label">Cantinho preferido <i>· 04 posts</i></span>
+        
+      </div>
+      <div class="slide-track separate" data-carousel="false" style="--items:4;--mobile-items:4">
+        
+    <figure class="slide ">
+      <div class="slide-number">POST <b>01 / 04</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar " data-lightbox-src="media/institucional/cantinho/Cantinho-preferido-01.jpg">
+        <img src="media/institucional/cantinho/Cantinho-preferido-01.jpg" alt="" loading="lazy">
+      </button>
+    </figure>
+    <figure class="slide ">
+      <div class="slide-number">POST <b>02 / 04</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar " data-lightbox-src="media/institucional/cantinho/Cantinho-preferido-02.jpg">
+        <img src="media/institucional/cantinho/Cantinho-preferido-02.jpg" alt="" loading="lazy">
+      </button>
+    </figure>
+    <figure class="slide ">
+      <div class="slide-number">POST <b>03 / 04</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar " data-lightbox-src="media/institucional/cantinho/Cantinho-preferido-03.jpg">
+        <img src="media/institucional/cantinho/Cantinho-preferido-03.jpg" alt="" loading="lazy">
+      </button>
+    </figure>
+    <figure class="slide ">
+      <div class="slide-number">POST <b>04 / 04</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar " data-lightbox-src="media/institucional/cantinho/Cantinho-preferido-04.jpg">
+        <img src="media/institucional/cantinho/Cantinho-preferido-04.jpg" alt="" loading="lazy">
+      </button>
+    </figure>
+      </div>
+    </div>
+      </article>
+    </section>
+
+    <section class="section content-section" id="conteudo">
+      <div class="section-title"><h2>Campanhas pedagógicas</h2><span class="section-index">CONTEÚDO</span></div>
+      <article class="campaign-unit">
+        <h3>Eu cuido de mim e de você</h3>
+        <p class="small-label">CAMPANHA CONTRA O BULLYING · SEMANA DA COMUNICAÇÃO NÃO VIOLENTA</p>
+        
+    <div class="phone-stage">
+      <div class="showcase-reel-wrap" aria-hidden="true">
+        <div class="showcase-reel"><img src="media/conteudo/cnv-02.jpeg" alt="" loading="eager"><img src="media/conteudo/cnv-03.jpeg" alt="" loading="eager"><img src="media/conteudo/cnv-04.jpeg" alt="" loading="eager"><img src="media/conteudo/cnv-05.jpeg" alt="" loading="eager"><img src="media/conteudo/cnv-06.jpeg" alt="" loading="eager"><img src="media/conteudo/cnv-07.jpeg" alt="" loading="eager"><img src="media/conteudo/cnv-08.jpeg" alt="" loading="eager"><img src="media/conteudo/cnv-09.jpeg" alt="" loading="eager"><img src="media/conteudo/cnv-10.jpeg" alt="" loading="eager"></div>
+      </div>
+      
+    <div class="device-shell" data-phone>
+      <div class="device-screen">
+        <div class="device-earpiece"></div>
+        <div class="post-topline">
+          <span class="account-mark">CA</span>
+          <span>COLÉGIO ACADEMIA</span>
+          <span class="post-more">•••</span>
+        </div>
+        <div class="phone-image-window">
+          <div class="phone-image-track"><img class="phone-frame-image is-active" src="media/conteudo/cnv-02.jpeg" alt="Lâmina 01 de 09" loading="lazy" data-phone-slide="0"><img class="phone-frame-image " src="media/conteudo/cnv-03.jpeg" alt="Lâmina 02 de 09" loading="lazy" data-phone-slide="1"><img class="phone-frame-image " src="media/conteudo/cnv-04.jpeg" alt="Lâmina 03 de 09" loading="lazy" data-phone-slide="2"><img class="phone-frame-image " src="media/conteudo/cnv-05.jpeg" alt="Lâmina 04 de 09" loading="lazy" data-phone-slide="3"><img class="phone-frame-image " src="media/conteudo/cnv-06.jpeg" alt="Lâmina 05 de 09" loading="lazy" data-phone-slide="4"><img class="phone-frame-image " src="media/conteudo/cnv-07.jpeg" alt="Lâmina 06 de 09" loading="lazy" data-phone-slide="5"><img class="phone-frame-image " src="media/conteudo/cnv-08.jpeg" alt="Lâmina 07 de 09" loading="lazy" data-phone-slide="6"><img class="phone-frame-image " src="media/conteudo/cnv-09.jpeg" alt="Lâmina 08 de 09" loading="lazy" data-phone-slide="7"><img class="phone-frame-image " src="media/conteudo/cnv-10.jpeg" alt="Lâmina 09 de 09" loading="lazy" data-phone-slide="8"></div>
+          <button type="button" class="phone-arrow phone-prev" aria-label="Lâmina anterior">‹</button>
+          <button type="button" class="phone-arrow phone-next" aria-label="Próxima lâmina">›</button>
+          <span class="phone-index"><b data-phone-current>01</b> / 09</span>
+        </div>
+        <div class="post-ui">
+          <div class="post-icon-row"><span>♡</span><span>○</span><span>↗</span><i>•••</i></div>
+          <div class="phone-dots"><button type="button" class="phone-dot is-active" aria-label="Ir para lâmina 1" data-phone-dot="0"></button><button type="button" class="phone-dot " aria-label="Ir para lâmina 2" data-phone-dot="1"></button><button type="button" class="phone-dot " aria-label="Ir para lâmina 3" data-phone-dot="2"></button><button type="button" class="phone-dot " aria-label="Ir para lâmina 4" data-phone-dot="3"></button><button type="button" class="phone-dot " aria-label="Ir para lâmina 5" data-phone-dot="4"></button><button type="button" class="phone-dot " aria-label="Ir para lâmina 6" data-phone-dot="5"></button><button type="button" class="phone-dot " aria-label="Ir para lâmina 7" data-phone-dot="6"></button><button type="button" class="phone-dot " aria-label="Ir para lâmina 8" data-phone-dot="7"></button><button type="button" class="phone-dot " aria-label="Ir para lâmina 9" data-phone-dot="8"></button></div>
+        </div>
+      </div>
+      <div class="device-home"></div>
+      <span class="device-caption">COMUNICAÇÃO NÃO VIOLENTA · 01/09</span>
+    </div>
+    </div>
+        
+    <div class="carousel-wrap">
+      <div class="carousel-tools">
+        <span class="carousel-label">Comunicação não violenta <i>· 09 lâminas</i></span>
+        <button class="carousel-cta" type="button" data-open-carousel>Clique para ver o carrossel</button>
+      </div>
+      <div class="slide-track" data-carousel="true" style="--items:9;--mobile-items:4">
+        
+    <figure class="slide ">
+      <div class="slide-number">LÂMINA <b>01 / 09</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar Comunicação não violenta · lâmina 01" data-lightbox-src="media/conteudo/cnv-02.jpeg">
+        <img src="media/conteudo/cnv-02.jpeg" alt="Comunicação não violenta · lâmina 01" loading="lazy">
+      </button>
+    </figure>
+    <figure class="slide ">
+      <div class="slide-number">LÂMINA <b>02 / 09</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar Comunicação não violenta · lâmina 02" data-lightbox-src="media/conteudo/cnv-03.jpeg">
+        <img src="media/conteudo/cnv-03.jpeg" alt="Comunicação não violenta · lâmina 02" loading="lazy">
+      </button>
+    </figure>
+    <figure class="slide ">
+      <div class="slide-number">LÂMINA <b>03 / 09</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar Comunicação não violenta · lâmina 03" data-lightbox-src="media/conteudo/cnv-04.jpeg">
+        <img src="media/conteudo/cnv-04.jpeg" alt="Comunicação não violenta · lâmina 03" loading="lazy">
+      </button>
+    </figure>
+    <figure class="slide ">
+      <div class="slide-number">LÂMINA <b>04 / 09</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar Comunicação não violenta · lâmina 04" data-lightbox-src="media/conteudo/cnv-05.jpeg">
+        <img src="media/conteudo/cnv-05.jpeg" alt="Comunicação não violenta · lâmina 04" loading="lazy">
+      </button>
+    </figure>
+    <figure class="slide ">
+      <div class="slide-number">LÂMINA <b>05 / 09</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar Comunicação não violenta · lâmina 05" data-lightbox-src="media/conteudo/cnv-06.jpeg">
+        <img src="media/conteudo/cnv-06.jpeg" alt="Comunicação não violenta · lâmina 05" loading="lazy">
+      </button>
+    </figure>
+    <figure class="slide ">
+      <div class="slide-number">LÂMINA <b>06 / 09</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar Comunicação não violenta · lâmina 06" data-lightbox-src="media/conteudo/cnv-07.jpeg">
+        <img src="media/conteudo/cnv-07.jpeg" alt="Comunicação não violenta · lâmina 06" loading="lazy">
+      </button>
+    </figure>
+    <figure class="slide ">
+      <div class="slide-number">LÂMINA <b>07 / 09</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar Comunicação não violenta · lâmina 07" data-lightbox-src="media/conteudo/cnv-08.jpeg">
+        <img src="media/conteudo/cnv-08.jpeg" alt="Comunicação não violenta · lâmina 07" loading="lazy">
+      </button>
+    </figure>
+    <figure class="slide ">
+      <div class="slide-number">LÂMINA <b>08 / 09</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar Comunicação não violenta · lâmina 08" data-lightbox-src="media/conteudo/cnv-09.jpeg">
+        <img src="media/conteudo/cnv-09.jpeg" alt="Comunicação não violenta · lâmina 08" loading="lazy">
+      </button>
+    </figure>
+    <figure class="slide ">
+      <div class="slide-number">LÂMINA <b>09 / 09</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar Comunicação não violenta · lâmina 09" data-lightbox-src="media/conteudo/cnv-10.jpeg">
+        <img src="media/conteudo/cnv-10.jpeg" alt="Comunicação não violenta · lâmina 09" loading="lazy">
+      </button>
+    </figure>
+      </div>
+    </div>
+        <p class="small-label" style="margin-top:54px">POSTS DA CAMPANHA</p>
+        <div class="post-grid"><figure class="post-grid-item"><button type="button" class="slide-open" data-lightbox-src="media/conteudo/eu-cuido-01.jpg" aria-label="Ampliar Eu cuido de mim e de você · post 01"><img src="media/conteudo/eu-cuido-01.jpg" alt="Eu cuido de mim e de você · post 01" loading="lazy"></button></figure><figure class="post-grid-item"><button type="button" class="slide-open" data-lightbox-src="media/conteudo/eu-cuido-02.jpg" aria-label="Ampliar Eu cuido de mim e de você · post 02"><img src="media/conteudo/eu-cuido-02.jpg" alt="Eu cuido de mim e de você · post 02" loading="lazy"></button></figure><figure class="post-grid-item"><button type="button" class="slide-open" data-lightbox-src="media/conteudo/eu-cuido-03.jpg" aria-label="Ampliar Eu cuido de mim e de você · post 03"><img src="media/conteudo/eu-cuido-03.jpg" alt="Eu cuido de mim e de você · post 03" loading="lazy"></button></figure><figure class="post-grid-item"><button type="button" class="slide-open" data-lightbox-src="media/conteudo/eu-cuido-04.jpg" aria-label="Ampliar Eu cuido de mim e de você · post 04"><img src="media/conteudo/eu-cuido-04.jpg" alt="Eu cuido de mim e de você · post 04" loading="lazy"></button></figure><figure class="post-grid-item"><button type="button" class="slide-open" data-lightbox-src="media/conteudo/eu-cuido-05.jpg" aria-label="Ampliar Eu cuido de mim e de você · post 05"><img src="media/conteudo/eu-cuido-05.jpg" alt="Eu cuido de mim e de você · post 05" loading="lazy"></button></figure><figure class="post-grid-item"><button type="button" class="slide-open" data-lightbox-src="media/conteudo/eu-cuido-06.jpg" aria-label="Ampliar Eu cuido de mim e de você · post 06"><img src="media/conteudo/eu-cuido-06.jpg" alt="Eu cuido de mim e de você · post 06" loading="lazy"></button></figure><figure class="post-grid-item"><button type="button" class="slide-open" data-lightbox-src="media/conteudo/eu-cuido-07.jpg" aria-label="Ampliar Eu cuido de mim e de você · post 07"><img src="media/conteudo/eu-cuido-07.jpg" alt="Eu cuido de mim e de você · post 07" loading="lazy"></button></figure></div>
+      </article>
+      <article class="campaign-unit">
+        <h3>Viagens escolares · memórias do terceirão</h3>
+        
+    <div class="phone-stage">
+      <div class="showcase-reel-wrap" aria-hidden="true">
+        <div class="showcase-reel"><img src="media/projetos/ibitipoca/Diario-Ibitipoca-01.jpg" alt="" loading="eager"><img src="media/projetos/ibitipoca/Diario-Ibitipoca-02.jpg" alt="" loading="eager"><img src="media/projetos/ibitipoca/Diario-Ibitipoca-03.jpg" alt="" loading="eager"></div>
+      </div>
+      
+    <div class="device-shell" data-phone>
+      <div class="device-screen">
+        <div class="device-earpiece"></div>
+        <div class="post-topline">
+          <span class="account-mark">CA</span>
+          <span>COLÉGIO ACADEMIA</span>
+          <span class="post-more">•••</span>
+        </div>
+        <div class="phone-image-window">
+          <div class="phone-image-track"><img class="phone-frame-image is-active" src="media/projetos/ibitipoca/Diario-Ibitipoca-01.jpg" alt="Lâmina 01 de 03" loading="lazy" data-phone-slide="0"><img class="phone-frame-image " src="media/projetos/ibitipoca/Diario-Ibitipoca-02.jpg" alt="Lâmina 02 de 03" loading="lazy" data-phone-slide="1"><img class="phone-frame-image " src="media/projetos/ibitipoca/Diario-Ibitipoca-03.jpg" alt="Lâmina 03 de 03" loading="lazy" data-phone-slide="2"></div>
+          <button type="button" class="phone-arrow phone-prev" aria-label="Lâmina anterior">‹</button>
+          <button type="button" class="phone-arrow phone-next" aria-label="Próxima lâmina">›</button>
+          <span class="phone-index"><b data-phone-current>01</b> / 03</span>
+        </div>
+        <div class="post-ui">
+          <div class="post-icon-row"><span>♡</span><span>○</span><span>↗</span><i>•••</i></div>
+          <div class="phone-dots"><button type="button" class="phone-dot is-active" aria-label="Ir para lâmina 1" data-phone-dot="0"></button><button type="button" class="phone-dot " aria-label="Ir para lâmina 2" data-phone-dot="1"></button><button type="button" class="phone-dot " aria-label="Ir para lâmina 3" data-phone-dot="2"></button></div>
+        </div>
+      </div>
+      <div class="device-home"></div>
+      <span class="device-caption">VIAGENS ESCOLARES · 01/03</span>
+    </div>
+    </div>
+      </article>
+    </section>
+
+    <section class="section event-section" id="eventos">
+      <div class="section-title"><h2>Eventos</h2><span class="section-index">CAMPANHAS</span></div>
+      <article class="culture-block">
+        <h3>Festa julina · Brasilidade em Festa</h3>
+        <div class="event-feature">
+          
+    <div class="phone-stage">
+      <div class="showcase-reel-wrap" aria-hidden="true">
+        <div class="showcase-reel"><img src="media/eventos/brasilidade-01.jpeg" alt="" loading="eager"><img src="media/eventos/brasilidade-02.jpeg" alt="" loading="eager"><img src="media/eventos/brasilidade-03.jpeg" alt="" loading="eager"><img src="media/eventos/brasilidade-04.jpeg" alt="" loading="eager"><img src="media/eventos/brasilidade-05.jpeg" alt="" loading="eager"><img src="media/eventos/brasilidade-06.jpeg" alt="" loading="eager"><img src="media/eventos/brasilidade-07.jpeg" alt="" loading="eager"></div>
+      </div>
+      
+    <div class="device-shell" data-phone>
+      <div class="device-screen">
+        <div class="device-earpiece"></div>
+        <div class="post-topline">
+          <span class="account-mark">CA</span>
+          <span>COLÉGIO ACADEMIA</span>
+          <span class="post-more">•••</span>
+        </div>
+        <div class="phone-image-window">
+          <div class="phone-image-track"><img class="phone-frame-image is-active" src="media/eventos/brasilidade-01.jpeg" alt="Lâmina 01 de 07" loading="lazy" data-phone-slide="0"><img class="phone-frame-image " src="media/eventos/brasilidade-02.jpeg" alt="Lâmina 02 de 07" loading="lazy" data-phone-slide="1"><img class="phone-frame-image " src="media/eventos/brasilidade-03.jpeg" alt="Lâmina 03 de 07" loading="lazy" data-phone-slide="2"><img class="phone-frame-image " src="media/eventos/brasilidade-04.jpeg" alt="Lâmina 04 de 07" loading="lazy" data-phone-slide="3"><img class="phone-frame-image " src="media/eventos/brasilidade-05.jpeg" alt="Lâmina 05 de 07" loading="lazy" data-phone-slide="4"><img class="phone-frame-image " src="media/eventos/brasilidade-06.jpeg" alt="Lâmina 06 de 07" loading="lazy" data-phone-slide="5"><img class="phone-frame-image " src="media/eventos/brasilidade-07.jpeg" alt="Lâmina 07 de 07" loading="lazy" data-phone-slide="6"></div>
+          <button type="button" class="phone-arrow phone-prev" aria-label="Lâmina anterior">‹</button>
+          <button type="button" class="phone-arrow phone-next" aria-label="Próxima lâmina">›</button>
+          <span class="phone-index"><b data-phone-current>01</b> / 07</span>
+        </div>
+        <div class="post-ui">
+          <div class="post-icon-row"><span>♡</span><span>○</span><span>↗</span><i>•••</i></div>
+          <div class="phone-dots"><button type="button" class="phone-dot is-active" aria-label="Ir para lâmina 1" data-phone-dot="0"></button><button type="button" class="phone-dot " aria-label="Ir para lâmina 2" data-phone-dot="1"></button><button type="button" class="phone-dot " aria-label="Ir para lâmina 3" data-phone-dot="2"></button><button type="button" class="phone-dot " aria-label="Ir para lâmina 4" data-phone-dot="3"></button><button type="button" class="phone-dot " aria-label="Ir para lâmina 5" data-phone-dot="4"></button><button type="button" class="phone-dot " aria-label="Ir para lâmina 6" data-phone-dot="5"></button><button type="button" class="phone-dot " aria-label="Ir para lâmina 7" data-phone-dot="6"></button></div>
+        </div>
+      </div>
+      <div class="device-home"></div>
+      <span class="device-caption">BRASILIDADE EM FESTA · 01/07</span>
+    </div>
+    </div>
+          
+    <div class="carousel-wrap">
+      <div class="carousel-tools">
+        <span class="carousel-label">Carrossel · Brasilidade em festa <i>· 07 lâminas</i></span>
+        <button class="carousel-cta" type="button" data-open-carousel>Clique para ver o carrossel</button>
+      </div>
+      <div class="slide-track" data-carousel="true" style="--items:7;--mobile-items:4">
+        
+    <figure class="slide ">
+      <div class="slide-number">LÂMINA <b>01 / 07</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar Brasilidade em festa · lâmina 01" data-lightbox-src="media/eventos/brasilidade-01.jpeg">
+        <img src="media/eventos/brasilidade-01.jpeg" alt="Brasilidade em festa · lâmina 01" loading="lazy">
+      </button>
+    </figure>
+    <figure class="slide ">
+      <div class="slide-number">LÂMINA <b>02 / 07</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar Brasilidade em festa · lâmina 02" data-lightbox-src="media/eventos/brasilidade-02.jpeg">
+        <img src="media/eventos/brasilidade-02.jpeg" alt="Brasilidade em festa · lâmina 02" loading="lazy">
+      </button>
+    </figure>
+    <figure class="slide ">
+      <div class="slide-number">LÂMINA <b>03 / 07</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar Brasilidade em festa · lâmina 03" data-lightbox-src="media/eventos/brasilidade-03.jpeg">
+        <img src="media/eventos/brasilidade-03.jpeg" alt="Brasilidade em festa · lâmina 03" loading="lazy">
+      </button>
+    </figure>
+    <figure class="slide ">
+      <div class="slide-number">LÂMINA <b>04 / 07</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar Brasilidade em festa · lâmina 04" data-lightbox-src="media/eventos/brasilidade-04.jpeg">
+        <img src="media/eventos/brasilidade-04.jpeg" alt="Brasilidade em festa · lâmina 04" loading="lazy">
+      </button>
+    </figure>
+    <figure class="slide ">
+      <div class="slide-number">LÂMINA <b>05 / 07</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar Brasilidade em festa · lâmina 05" data-lightbox-src="media/eventos/brasilidade-05.jpeg">
+        <img src="media/eventos/brasilidade-05.jpeg" alt="Brasilidade em festa · lâmina 05" loading="lazy">
+      </button>
+    </figure>
+    <figure class="slide ">
+      <div class="slide-number">LÂMINA <b>06 / 07</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar Brasilidade em festa · lâmina 06" data-lightbox-src="media/eventos/brasilidade-06.jpeg">
+        <img src="media/eventos/brasilidade-06.jpeg" alt="Brasilidade em festa · lâmina 06" loading="lazy">
+      </button>
+    </figure>
+    <figure class="slide ">
+      <div class="slide-number">LÂMINA <b>07 / 07</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar Brasilidade em festa · lâmina 07" data-lightbox-src="media/eventos/brasilidade-07.jpeg">
+        <img src="media/eventos/brasilidade-07.jpeg" alt="Brasilidade em festa · lâmina 07" loading="lazy">
+      </button>
+    </figure>
+      </div>
+    </div>
+        </div>
+        <div class="case-split">
+          <div class="case-titleline"><h3>Data e atrações</h3><span>02 POSTS</span></div>
+          <div class="event-extras">
+    <div class="carousel-wrap">
+      <div class="carousel-tools">
+        <span class="carousel-label">Atrações <i>· 02 posts</i></span>
+        
+      </div>
+      <div class="slide-track separate" data-carousel="false" style="--items:2;--mobile-items:2">
+        
+    <figure class="slide ">
+      <div class="slide-number">POST <b>01 / 02</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar Festa julina · atração 01" data-lightbox-src="media/eventos/brasilidade-09.jpg">
+        <img src="media/eventos/brasilidade-09.jpg" alt="Festa julina · atração 01" loading="lazy">
+      </button>
+    </figure>
+    <figure class="slide ">
+      <div class="slide-number">POST <b>02 / 02</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar Festa julina · atração 02" data-lightbox-src="media/eventos/brasilidade-10.jpg">
+        <img src="media/eventos/brasilidade-10.jpg" alt="Festa julina · atração 02" loading="lazy">
+      </button>
+    </figure>
+      </div>
+    </div></div>
+        </div>
+      </article>
+      <article class="culture-block">
+        <h3>Elenco A Fantástica Trupe da Esperança</h3>
+        <div class="culture-feature">
+          <figure class="culture-poster"><p class="small-label">PÔSTER · PEÇA DE TEATRO</p><button type="button" class="slide-open" data-lightbox-src="media/cultura/trupe/Fantastica-Trupe-da-Esperanca-01.jpg" aria-label="Ampliar pôster da peça"><img src="media/cultura/trupe/Fantastica-Trupe-da-Esperanca-01.jpg" alt="Pôster de A Fantástica Trupe da Esperança" loading="lazy"></button></figure>
+          <div>
+    <div class="carousel-wrap">
+      <div class="carousel-tools">
+        <span class="carousel-label">Posts da peça <i>· 06 posts</i></span>
+        
+      </div>
+      <div class="slide-track separate" data-carousel="false" style="--items:6;--mobile-items:4">
+        
+    <figure class="slide ">
+      <div class="slide-number">POST <b>01 / 06</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar " data-lightbox-src="media/cultura/trupe/Fantastica-Trupe-da-Esperanca-02.jpg">
+        <img src="media/cultura/trupe/Fantastica-Trupe-da-Esperanca-02.jpg" alt="" loading="lazy">
+      </button>
+    </figure>
+    <figure class="slide ">
+      <div class="slide-number">POST <b>02 / 06</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar " data-lightbox-src="media/cultura/trupe/Fantastica-Trupe-da-Esperanca-03.jpg">
+        <img src="media/cultura/trupe/Fantastica-Trupe-da-Esperanca-03.jpg" alt="" loading="lazy">
+      </button>
+    </figure>
+    <figure class="slide ">
+      <div class="slide-number">POST <b>03 / 06</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar " data-lightbox-src="media/cultura/trupe/Fantastica-Trupe-da-Esperanca-04.jpg">
+        <img src="media/cultura/trupe/Fantastica-Trupe-da-Esperanca-04.jpg" alt="" loading="lazy">
+      </button>
+    </figure>
+    <figure class="slide ">
+      <div class="slide-number">POST <b>04 / 06</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar " data-lightbox-src="media/cultura/trupe/Fantastica-Trupe-da-Esperanca-05.jpg">
+        <img src="media/cultura/trupe/Fantastica-Trupe-da-Esperanca-05.jpg" alt="" loading="lazy">
+      </button>
+    </figure>
+    <figure class="slide ">
+      <div class="slide-number">POST <b>05 / 06</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar " data-lightbox-src="media/cultura/trupe/Fantastica-Trupe-da-Esperanca-06.jpg">
+        <img src="media/cultura/trupe/Fantastica-Trupe-da-Esperanca-06.jpg" alt="" loading="lazy">
+      </button>
+    </figure>
+    <figure class="slide ">
+      <div class="slide-number">POST <b>06 / 06</b></div>
+      <button class="slide-open" type="button" aria-label="Ampliar " data-lightbox-src="media/cultura/trupe/Fantastica-Trupe-da-Esperanca-07.jpg">
+        <img src="media/cultura/trupe/Fantastica-Trupe-da-Esperanca-07.jpg" alt="" loading="lazy">
+      </button>
+    </figure>
+      </div>
+    </div></div>
+        </div>
+      </article>
+      <article class="culture-block coral-block">
+        <h3>Coral Academia · 70 anos</h3>
+        
+    <div class="phone-stage">
+      <div class="showcase-reel-wrap" aria-hidden="true">
+        <div class="showcase-reel"><img src="media/cultura/coral/Coral-70-anos-01.jpg" alt="" loading="eager"><img src="media/cultura/coral/Coral-70-anos-02.jpeg" alt="" loading="eager"><img src="media/cultura/coral/Coral-70-anos-03.jpeg" alt="" loading="eager"><img src="media/cultura/coral/Coral-70-anos-04.jpeg" alt="" loading="eager"><img src="media/cultura/coral/Coral-70-anos-05.jpeg" alt="" loading="eager"><img src="media/cultura/coral/Coral-70-anos-06.jpeg" alt="" loading="eager"></div>
+      </div>
+      
+    <div class="device-shell" data-phone>
+      <div class="device-screen">
+        <div class="device-earpiece"></div>
+        <div class="post-topline">
+          <span class="account-mark">CA</span>
+          <span>COLÉGIO ACADEMIA</span>
+          <span class="post-more">•••</span>
+        </div>
+        <div class="phone-image-window">
+          <div class="phone-image-track"><img class="phone-frame-image is-active" src="media/cultura/coral/Coral-70-anos-01.jpg" alt="Lâmina 01 de 06" loading="lazy" data-phone-slide="0"><img class="phone-frame-image " src="media/cultura/coral/Coral-70-anos-02.jpeg" alt="Lâmina 02 de 06" loading="lazy" data-phone-slide="1"><img class="phone-frame-image " src="media/cultura/coral/Coral-70-anos-03.jpeg" alt="Lâmina 03 de 06" loading="lazy" data-phone-slide="2"><img class="phone-frame-image " src="media/cultura/coral/Coral-70-anos-04.jpeg" alt="Lâmina 04 de 06" loading="lazy" data-phone-slide="3"><img class="phone-frame-image " src="media/cultura/coral/Coral-70-anos-05.jpeg" alt="Lâmina 05 de 06" loading="lazy" data-phone-slide="4"><img class="phone-frame-image " src="media/cultura/coral/Coral-70-anos-06.jpeg" alt="Lâmina 06 de 06" loading="lazy" data-phone-slide="5"></div>
+          <button type="button" class="phone-arrow phone-prev" aria-label="Lâmina anterior">‹</button>
+          <button type="button" class="phone-arrow phone-next" aria-label="Próxima lâmina">›</button>
+          <span class="phone-index"><b data-phone-current>01</b> / 06</span>
+        </div>
+        <div class="post-ui">
+          <div class="post-icon-row"><span>♡</span><span>○</span><span>↗</span><i>•••</i></div>
+          <div class="phone-dots"><button type="button" class="phone-dot is-active" aria-label="Ir para lâmina 1" data-phone-dot="0"></button><button type="button" class="phone-dot " aria-label="Ir para lâmina 2" data-phone-dot="1"></button><button type="button" class="phone-dot " aria-label="Ir para lâmina 3" data-phone-dot="2"></button><button type="button" class="phone-dot " aria-label="Ir para lâmina 4" data-phone-dot="3"></button><button type="button" class="phone-dot " aria-label="Ir para lâmina 5" data-phone-dot="4"></button><button type="button" class="phone-dot " aria-label="Ir para lâmina 6" data-phone-dot="5"></button></div>
+        </div>
+      </div>
+      <div class="device-home"></div>
+      <span class="device-caption">CORAL ACADEMIA · 01/06</span>
+    </div>
+    </div>
+      </article>
+    </section>
+
+    <section class="section avulsas" id="diversos">
+      <div class="section-title"><h2>Diversos</h2><span class="section-index">ARTES AVULSAS</span></div>
+      <div class="poster-grid"><figure class="poster"><img src="media/avulsas/arte-01.jpg" alt="Halloween" loading="lazy"><figcaption>Halloween</figcaption></figure><figure class="poster"><img src="media/avulsas/arte-02.jpg" alt="Comunicação não violenta · abertura" loading="lazy"><figcaption>Comunicação não violenta · abertura</figcaption></figure><figure class="poster"><img src="media/avulsas/arte-03.jpeg" alt="Colégio Academia · 131 anos" loading="lazy"><figcaption>Colégio Academia · 131 anos</figcaption></figure><figure class="poster"><img src="media/avulsas/arte-04.webp" alt="Carnaval" loading="lazy"><figcaption>Carnaval</figcaption></figure><figure class="poster"><img src="media/avulsas/arte-05.jpg" alt="Homenagem · Emanuella" loading="lazy"><figcaption>Homenagem · Emanuella</figcaption></figure><figure class="poster"><img src="media/avulsas/arte-06.jpeg" alt="Colégio Academia · 132 anos" loading="lazy"><figcaption>Colégio Academia · 132 anos</figcaption></figure><figure class="poster"><img src="media/avulsas/arte-07.jpeg" alt="Torneio de robótica" loading="lazy"><figcaption>Torneio de robótica</figcaption></figure><figure class="poster"><img src="media/avulsas/arte-08.jpg" alt="Festa julina · Minas e dentro da gente" loading="lazy"><figcaption>Festa julina · Minas e dentro da gente</figcaption></figure><figure class="poster"><img src="media/avulsas/arte-09.jpg" alt="Colégio Academia · 134 anos" loading="lazy"><figcaption>Colégio Academia · 134 anos</figcaption></figure><figure class="poster"><img src="media/avulsas/arte-10.jpg" alt="Colônia de férias" loading="lazy"><figcaption>Colônia de férias</figcaption></figure><figure class="poster"><img src="media/avulsas/arte-11.jpg" alt="Nossa Senhora Aparecida" loading="lazy"><figcaption>Nossa Senhora Aparecida</figcaption></figure><figure class="poster"><img src="media/avulsas/arte-12.webp" alt="Aniversário de Juiz de Fora" loading="lazy"><figcaption>Aniversário de Juiz de Fora</figcaption></figure><figure class="poster"><img src="media/avulsas/arte-13.jpg" alt="Comunicação não violenta · encerramento" loading="lazy"><figcaption>Comunicação não violenta · encerramento</figcaption></figure><figure class="poster"><img src="media/aprovacao/olimpiadas-01.jpg" alt="Aluno classificado na Olimpíada de Língua Portuguesa" loading="lazy"><figcaption>Olimpíada de Língua Portuguesa</figcaption></figure><figure class="poster"><img src="media/aprovacao/olimpiadas-02.jpg" alt="Aluno selecionado para a etapa internacional da OBA" loading="lazy"><figcaption>Olimpíada Brasileira de Astronomia</figcaption></figure><figure class="poster"><img src="media/aprovacao/aulao/Aulao-redacao-01.jpg" alt="Arte do Aulão de redação" loading="lazy"><figcaption>Aulão de redação</figcaption></figure></div>
+    </section>
+  </main>
+  <dialog class="image-lightbox" aria-label="Arte ampliada">
+    <button type="button" class="lightbox-close" aria-label="Fechar imagem">×</button>
+    <img alt="">
+  </dialog>
+  <dialog class="carousel-dialog" aria-label="Visualização do carrossel">
+    <button type="button" class="modal-close" aria-label="Fechar carrossel">×</button>
+    <div class="device-shell">
+      <div class="device-screen">
+        <div class="device-earpiece"></div>
+        <div class="post-topline"><span class="account-mark">CA</span><span>COLÉGIO ACADEMIA</span><span class="post-more">•••</span></div>
+        <div class="phone-image-window">
+          <img class="modal-slide" alt="">
+          <button type="button" class="phone-arrow phone-prev modal-prev" aria-label="Lâmina anterior">‹</button>
+          <button type="button" class="phone-arrow phone-next modal-next" aria-label="Próxima lâmina">›</button>
+          <span class="phone-index"><b class="modal-current">01</b> / <span class="modal-total">01</span></span>
+        </div>
+        <div class="post-ui"><div class="post-icon-row"><span>♡</span><span>○</span><span>↗</span><i>•••</i></div><div class="phone-dots modal-dots"></div></div>
+      </div>
+      <div class="device-home"></div>
+    </div>
+  </dialog>
+  <footer><span>MATHEUS NETTO</span><span>DESIGN · CAMPANHAS · CONTEÚDO</span></footer>
+
+  <script>
+    const lightbox = document.querySelector('.image-lightbox');
+    const lightboxImage = lightbox.querySelector('img');
+    const carouselDialog = document.querySelector('.carousel-dialog');
+    const carouselImage = carouselDialog.querySelector('.modal-slide');
+    let modalSlides = [];
+    let modalIndex = 0;
+    const showModalSlide = (next) => {
+      modalIndex = Math.min(Math.max(next, 0), modalSlides.length - 1);
+      const slide = modalSlides[modalIndex];
+      carouselImage.src = slide.src;
+      carouselImage.alt = slide.alt;
+      carouselDialog.querySelector('.modal-current').textContent = String(modalIndex + 1).padStart(2, '0');
+      carouselDialog.querySelector('.modal-total').textContent = String(modalSlides.length).padStart(2, '0');
+      carouselDialog.querySelectorAll('.modal-dot').forEach((dot, index) => dot.classList.toggle('is-active', index === modalIndex));
+      carouselDialog.querySelector('.modal-prev').disabled = modalIndex === 0;
+      carouselDialog.querySelector('.modal-next').disabled = modalIndex === modalSlides.length - 1;
+    };
+    carouselDialog.querySelector('.modal-prev').addEventListener('click', () => showModalSlide(modalIndex - 1));
+    carouselDialog.querySelector('.modal-next').addEventListener('click', () => showModalSlide(modalIndex + 1));
+    carouselDialog.querySelector('.modal-close').addEventListener('click', () => carouselDialog.close());
+    carouselDialog.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowLeft') showModalSlide(modalIndex - 1);
+      if (event.key === 'ArrowRight') showModalSlide(modalIndex + 1);
+    });
+    const openCarousel = (track) => {
+      modalSlides = [...track.querySelectorAll('.slide-open img')].map((image) => ({ src:image.src, alt:image.alt }));
+      const dots = carouselDialog.querySelector('.modal-dots');
+      dots.innerHTML = '';
+      modalSlides.forEach((_, index) => {
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'phone-dot modal-dot';
+        dot.setAttribute('aria-label', `Ir para lâmina ${index + 1}`);
+        dot.addEventListener('click', () => showModalSlide(index));
+        dots.append(dot);
+      });
+      showModalSlide(0);
+      carouselDialog.showModal();
+    };
+    document.querySelectorAll('[data-open-carousel]').forEach((button) => {
+      button.addEventListener('click', () => openCarousel(button.closest('.carousel-wrap').querySelector('.slide-track')));
+    });
+    document.querySelectorAll('[data-lightbox-src]').forEach((button) => {
+      button.addEventListener('click', () => {
+        const track = button.closest('.slide-track');
+        if (track && track.dataset.carousel === 'true') {
+          openCarousel(track);
+          return;
+        }
+        lightboxImage.src = button.dataset.lightboxSrc;
+        lightboxImage.alt = button.querySelector('img').alt;
+        lightbox.showModal();
+      });
+    });
+    lightbox.querySelector('.lightbox-close').addEventListener('click', () => lightbox.close());
+    document.querySelectorAll('[data-phone]').forEach((phone) => {
+      const slides = [...phone.querySelectorAll('[data-phone-slide]')];
+      const dots = [...phone.querySelectorAll('[data-phone-dot]')];
+      const current = phone.querySelector('[data-phone-current]');
+      const stage = phone.closest('.phone-stage');
+      const reel = stage?.querySelector('.showcase-reel');
+      const imageWindow = phone.querySelector('.phone-image-window');
+      const imageTrack = phone.querySelector('.phone-image-track');
+      let index = 0;
+      const syncReel = () => {
+        if (!reel) return;
+        const frame = imageWindow.getBoundingClientRect();
+        const bounds = stage.getBoundingClientRect();
+        reel.style.left = `${frame.left - bounds.left}px`;
+        reel.style.top = `${frame.top - bounds.top}px`;
+        reel.style.setProperty('--card-width', `${frame.width}px`);
+        reel.style.setProperty('--card-height', `${frame.height}px`);
+        const offset = `translateX(${-index * frame.width}px)`;
+        reel.style.transform = offset;
+        imageTrack.style.transform = offset;
+      };
+      const show = (next) => {
+        index = Math.min(Math.max(next, 0), slides.length - 1);
+        slides.forEach((slide, i) => slide.classList.toggle('is-active', i === index));
+        dots.forEach((dot, i) => dot.classList.toggle('is-active', i === index));
+        current.textContent = String(index + 1).padStart(2, '0');
+        phone.querySelector('.phone-prev').disabled = index === 0;
+        phone.querySelector('.phone-next').disabled = index === slides.length - 1;
+        syncReel();
+      };
+      phone.querySelector('.phone-prev').addEventListener('click', () => show(index - 1));
+      phone.querySelector('.phone-next').addEventListener('click', () => show(index + 1));
+      dots.forEach((dot, i) => dot.addEventListener('click', () => show(i)));
+      window.addEventListener('resize', syncReel);
+      show(0);
+    });
+  </script>
+</body>
+</html>
