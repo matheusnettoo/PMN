@@ -92,7 +92,7 @@
     .phone-image-window { aspect-ratio:4/5; position:relative; overflow:hidden; background:#d9d9d5; touch-action:pan-y; user-select:none; cursor:grab; }
     .phone-image-window:active { cursor:grabbing; }
     .phone-image-track { position:absolute; inset:0; display:flex; transition:transform 1s cubic-bezier(.22,1,.36,1); }
-    .phone-frame-image { flex:0 0 100%; min-width:0; width:100%; height:100%; object-fit:cover; }
+    .phone-frame-image { flex:0 0 100%; min-width:0; width:100%; height:100%; object-fit:cover; user-select:none; pointer-events:none; -webkit-user-drag:none; }
     .phone-index { position:absolute; top:12px; right:12px; padding:5px 8px; border-radius:20px; background:rgba(16,21,19,.75); color:#fff; font-size:9px; }
     .phone-arrow { position:absolute; top:50%; transform:translateY(-50%); border:0; width:32px; height:32px; border-radius:50%; background:rgba(250,249,245,.9); color:#131715; cursor:pointer; font-size:23px; line-height:20px; opacity:0; pointer-events:none; transition:opacity .2s ease; }
     .phone-image-window:hover .phone-arrow, .phone-image-window.is-interacting .phone-arrow, .phone-arrow:focus-visible { opacity:1; pointer-events:auto; }
@@ -127,7 +127,7 @@
     .carousel-dialog { max-width:100vw; max-height:100dvh; padding:8px; border:0; background:transparent; overflow:hidden; }
     .carousel-dialog::backdrop { background:rgba(15,20,18,.82); }
     .carousel-dialog .device-shell { width:min(420px,84vw,calc((100dvh - 210px)*.8)); margin:auto; background:var(--paper); }
-    .carousel-dialog .phone-image-window img { width:100%; height:100%; object-fit:cover; }
+    .carousel-dialog .phone-image-window img { width:100%; height:100%; object-fit:cover; user-select:none; pointer-events:none; -webkit-user-drag:none; }
     .carousel-dialog .modal-slide.from-right { animation:modalFromRight 1s cubic-bezier(.22,1,.36,1); }
     .carousel-dialog .modal-slide.from-left { animation:modalFromLeft 1s cubic-bezier(.22,1,.36,1); }
     @keyframes modalFromRight { from { transform:translateX(34%); opacity:.45; } to { transform:translateX(0); opacity:1; } }
