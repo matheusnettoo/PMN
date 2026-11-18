@@ -77,7 +77,7 @@
     .phone-stage .device-shell::after { content:""; position:absolute; inset:0; border:1.5px solid #454b47; border-radius:38px; pointer-events:none; }
     .phone-stage .device-screen { border-radius:38px; }
     .showcase-reel-wrap { position:absolute; inset:0; overflow:hidden; pointer-events:none; }
-    .showcase-reel { position:absolute; top:0; left:0; display:flex; width:max-content; gap:0; transition:transform .55s cubic-bezier(.22,1,.36,1); }
+    .showcase-reel { position:absolute; top:0; left:0; display:flex; width:max-content; gap:0; transition:transform 1s cubic-bezier(.22,1,.36,1); }
     .showcase-reel img { display:block; flex:none; width:var(--card-width,320px); height:var(--card-height,400px); object-fit:cover; }
     .device-shell {
       width:min(100%,360px); padding:9px; border:1.5px solid #454b47;
@@ -91,10 +91,11 @@
     .post-more { margin-left:auto; letter-spacing:2px; }
     .phone-image-window { aspect-ratio:4/5; position:relative; overflow:hidden; background:#d9d9d5; touch-action:pan-y; user-select:none; cursor:grab; }
     .phone-image-window:active { cursor:grabbing; }
-    .phone-image-track { position:absolute; inset:0; display:flex; transition:transform .55s cubic-bezier(.22,1,.36,1); }
+    .phone-image-track { position:absolute; inset:0; display:flex; transition:transform 1s cubic-bezier(.22,1,.36,1); }
     .phone-frame-image { flex:0 0 100%; min-width:0; width:100%; height:100%; object-fit:cover; }
     .phone-index { position:absolute; top:12px; right:12px; padding:5px 8px; border-radius:20px; background:rgba(16,21,19,.75); color:#fff; font-size:9px; }
-    .phone-arrow { position:absolute; top:50%; transform:translateY(-50%); border:0; width:32px; height:32px; border-radius:50%; background:rgba(250,249,245,.9); color:#131715; cursor:pointer; font-size:23px; line-height:20px; }
+    .phone-arrow { position:absolute; top:50%; transform:translateY(-50%); border:0; width:32px; height:32px; border-radius:50%; background:rgba(250,249,245,.9); color:#131715; cursor:pointer; font-size:23px; line-height:20px; opacity:0; pointer-events:none; transition:opacity .2s ease; }
+    .phone-image-window:hover .phone-arrow, .phone-image-window.is-interacting .phone-arrow, .phone-arrow:focus-visible { opacity:1; pointer-events:auto; }
     .phone-prev { left:9px; } .phone-next { right:9px; }
     .post-ui { height:54px; padding:8px 12px 7px; }
     .post-icon-row { display:flex; gap:13px; align-items:center; font-size:16px; line-height:16px; }
@@ -127,9 +128,14 @@
     .carousel-dialog::backdrop { background:rgba(15,20,18,.82); }
     .carousel-dialog .device-shell { width:min(420px,84vw,calc((100dvh - 210px)*.8)); margin:auto; background:var(--paper); }
     .carousel-dialog .phone-image-window img { width:100%; height:100%; object-fit:cover; }
+    .carousel-dialog .modal-slide.from-right { animation:modalFromRight 1s cubic-bezier(.22,1,.36,1); }
+    .carousel-dialog .modal-slide.from-left { animation:modalFromLeft 1s cubic-bezier(.22,1,.36,1); }
+    @keyframes modalFromRight { from { transform:translateX(34%); opacity:.45; } to { transform:translateX(0); opacity:1; } }
+    @keyframes modalFromLeft { from { transform:translateX(-34%); opacity:.45; } to { transform:translateX(0); opacity:1; } }
     .carousel-dialog .modal-close { display:block; margin:0 0 9px auto; padding:4px 9px; border:0; border-radius:50%; background:var(--paper); color:var(--ink); font-size:24px; cursor:pointer; }
     .carousel-dialog .phone-dots { min-height:12px; }
-    .phone-arrow:disabled { opacity:.25; cursor:default; }
+    .phone-arrow:disabled { opacity:0; cursor:default; }
+    .phone-image-window:hover .phone-arrow:disabled, .phone-image-window.is-interacting .phone-arrow:disabled { opacity:.25; }
     .video-gallery { display:grid; grid-template-columns:repeat(var(--video-cols),minmax(0,1fr)); gap:clamp(14px,2vw,30px); margin-top:28px; }
     .motion-card { margin:0; }
     .motion-card video { aspect-ratio:4/5; object-fit:contain; background:#1b211e; }
@@ -158,6 +164,15 @@
     .small-label { margin:0 0 8px; text-transform:uppercase; color:var(--muted); letter-spacing:.12em; font-size:8px; }
     .event-section .carousel-label { color:#5b6258; }
     .avulsas { background:var(--paper); color:var(--ink); }
+    .about-section { background:#151a18; color:#f4f1e8; }
+    .about-grid { display:grid; grid-template-columns:.8fr 1.2fr; gap:clamp(32px,7vw,110px); align-items:start; }
+    .about-grid h2 { margin:0; font-size:clamp(46px,7vw,96px); line-height:.9; letter-spacing:-.07em; }
+    .about-copy { max-width:760px; }
+    .about-copy p { margin:0 0 20px; font-size:clamp(16px,1.8vw,24px); line-height:1.45; }
+    .about-tags { display:flex; flex-wrap:wrap; gap:8px; margin:28px 0; }
+    .about-tags span { padding:8px 11px; border:1px solid #59605c; border-radius:99px; font-size:9px; letter-spacing:.09em; text-transform:uppercase; }
+    .about-links { display:flex; flex-wrap:wrap; gap:18px; }
+    .about-links a { color:#f1684b; font-size:10px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
     .post-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:clamp(18px,2.2vw,34px); margin-top:28px; }
     .post-grid-item { min-width:0; margin:0; }
     .post-grid-item img { display:block; width:100%; aspect-ratio:4/5; object-fit:cover; }
@@ -186,7 +201,8 @@
       .hero-main { grid-template-columns:1fr; min-height:600px; gap:10px; align-items:start; }
       .hero h1 { font-size:clamp(48px,12vw,66px); padding-top:26px; }
       .hero-art { --hero-window:425px; width:95%; justify-self:end; gap:5px; }
-      .phone-stage { min-height:540px; margin:22px auto 34px; }
+      .phone-stage { min-height:540px; width:100vw; margin:22px calc(50% - 50vw) 34px; }
+      .about-grid { grid-template-columns:1fr; }
       .hero-meta { font-size:8px; }
       .section { padding:72px 5vw; }
       .section-title { align-items:flex-start; flex-direction:column; }
@@ -206,8 +222,9 @@
 </head>
 <body>
   <header class="topbar">
-    <a class="brand" href="#top">MATHEUS NETTO</a>
+    <a class="brand" href="#top">INÍCIO</a>
     <nav class="nav" aria-label="Navegação do portfólio">
+      <a href="#quem-sou-eu">Quem sou eu</a>
       <a href="#campanhas">Campanhas</a>
       <a href="#institucional">Institucional</a>
       <a href="#conteudo">Conteúdo</a>
@@ -225,12 +242,24 @@
   </section>
 
   <main>
+    <section class="section about-section" id="quem-sou-eu">
+      <div class="about-grid">
+        <h2>Quem<br>sou eu</h2>
+        <div class="about-copy">
+          <p>Sou Matheus Netto, designer gráfico com atuação em direção de arte, campanhas, identidade visual e comunicação educacional. Transformo estratégia em conceitos visuais consistentes para mídias digitais, materiais impressos, eventos e projetos audiovisuais.</p>
+          <p>Minha experiência reúne o trabalho desenvolvido para o Colégio Academia, projetos na eDrive e trabalhos independentes, combinando criação, desdobramento de marcas e produção visual com autonomia.</p>
+          <div class="about-tags"><span>Direção de arte</span><span>Branding</span><span>Campanhas</span><span>Adobe Creative Cloud</span><span>Audiovisual</span><span>IA generativa</span></div>
+          <div class="about-links"><a href="https://www.behance.net/matheusnettoo" target="_blank" rel="noreferrer">Behance ↗</a><a href="https://www.linkedin.com/in/matheus-palmeira-netto-8aa2b5161/" target="_blank" rel="noreferrer">LinkedIn ↗</a><a href="curriculo-matheus-netto-direcao-de-arte.pdf" target="_blank">Baixar currículo em PDF ↓</a></div>
+        </div>
+      </div>
+    </section>
+
     <section class="section approval" id="campanhas">
       <div class="section-title"><h2>Aprovações em<br>vestibulares</h2><span class="section-index">CAMPANHAS · 2023—2026</span></div>
       
     <article class="feature-case ">
       <div class="case-titleline">
-        <h3>Campanha 2023</h3>
+        <h3>Campanha de aprovação · 2023</h3>
         <span>O Colégio Academia prepara e aprova</span>
       </div>
       
@@ -1086,29 +1115,52 @@
       let startX = 0;
       let startY = 0;
       let tracking = false;
-      element.addEventListener('pointerdown', (event) => {
-        if (event.pointerType === 'mouse' && event.button !== 0) return;
+      let hideTimer;
+      const begin = (x, y) => {
         tracking = true;
-        startX = event.clientX;
-        startY = event.clientY;
-        element.setPointerCapture?.(event.pointerId);
-      });
-      element.addEventListener('pointerup', (event) => {
+        startX = x;
+        startY = y;
+        clearTimeout(hideTimer);
+        element.classList.add('is-interacting');
+      };
+      const finish = (x, y) => {
         if (!tracking) return;
         tracking = false;
-        const deltaX = event.clientX - startX;
-        const deltaY = event.clientY - startY;
-        if (Math.abs(deltaX) < 42 || Math.abs(deltaX) < Math.abs(deltaY)) return;
+        hideTimer = setTimeout(() => element.classList.remove('is-interacting'), 900);
+        const deltaX = x - startX;
+        const deltaY = y - startY;
+        if (Math.abs(deltaX) < 36 || Math.abs(deltaX) < Math.abs(deltaY)) return;
         if (deltaX < 0) next();
         else previous();
+      };
+      element.addEventListener('pointerdown', (event) => {
+        if (event.target.closest('.phone-arrow')) return;
+        if (event.pointerType === 'mouse' && event.button !== 0) return;
+        begin(event.clientX, event.clientY);
+        element.setPointerCapture?.(event.pointerId);
       });
+      element.addEventListener('pointerup', (event) => finish(event.clientX, event.clientY));
       element.addEventListener('pointercancel', () => { tracking = false; });
+      element.addEventListener('touchstart', (event) => {
+        if (window.PointerEvent || event.target.closest('.phone-arrow')) return;
+        const touch = event.changedTouches[0];
+        begin(touch.clientX, touch.clientY);
+      }, { passive:true });
+      element.addEventListener('touchend', (event) => {
+        if (window.PointerEvent) return;
+        const touch = event.changedTouches[0];
+        finish(touch.clientX, touch.clientY);
+      }, { passive:true });
     };
     const showModalSlide = (next) => {
+      const previousIndex = modalIndex;
       modalIndex = Math.min(Math.max(next, 0), modalSlides.length - 1);
       const slide = modalSlides[modalIndex];
       carouselImage.src = slide.src;
       carouselImage.alt = slide.alt;
+      carouselImage.classList.remove('from-left', 'from-right');
+      void carouselImage.offsetWidth;
+      if (modalSlides.length > 1 && modalIndex !== previousIndex) carouselImage.classList.add(modalIndex > previousIndex ? 'from-right' : 'from-left');
       carouselDialog.querySelector('.modal-current').textContent = String(modalIndex + 1).padStart(2, '0');
       carouselDialog.querySelector('.modal-total').textContent = String(modalSlides.length).padStart(2, '0');
       carouselDialog.querySelectorAll('.modal-dot').forEach((dot, index) => dot.classList.toggle('is-active', index === modalIndex));
